@@ -1,7 +1,10 @@
 :root {
     --bs-body-font-family: "Playfair Display";
-}
 
+}
+body {
+    background-color: #F5EDE1;
+}
 .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;
