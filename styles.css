@@ -43,9 +43,8 @@
 }
 
 .product-image {
-  width: 225px; 
-  height: 225px; 
-  object-fit: cover;
+  height: 300px;
+  object-fit:cover;
 }
 
 .btn-product {
@@ -57,4 +56,8 @@
 
 .btn-product:hover {
   border-color: #654C3E;
+}
+
+.card {
+  border: 0;
 }
