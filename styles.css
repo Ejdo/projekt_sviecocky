@@ -103,3 +103,83 @@
 .btn-toggle-nav a:focus {
   background-color: #e6ddcf;
 }
+
+
+
+
+/* LOGIN / REGISTRATION*/
+
+.form-container {
+  margin-top: 200px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.form-container h1 {
+  margin-bottom: 40px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+/* Form fields */
+.form-group {
+  margin-bottom: 30px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Create account button */
+.btn-create-account {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #654C3E;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
+.form-container h1 {
+  margin-bottom: 40px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+
+.container-login {
+  margin-top: 200px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 15px; 
+  }
+
+.container-login h1 {
+  margin-bottom: 0px;
+  font-weight: bold;
+  display: block;
+}
+
+
+
