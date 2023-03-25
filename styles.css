@@ -141,7 +141,35 @@
   margin-left: 1.25rem;
   text-decoration: none;
 }
+
 .btn-toggle-nav a:hover,
 .btn-toggle-nav a:focus {
   background-color: #e6ddcf;
+}
+
+.product-image-lg {
+  object-fit: cover;
+  max-height: 500px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .product-image-lg {
+    width: 80%;
+  }
+}
+
+.product-price {
+  font-size: 24px;
+}
+
+.add-to-cart-btn {
+  background-color: #654c3e;
+  color: white;
+  border-radius: 0;
+}
+
+.add-to-cart-btn:hover {
+  background-color: white;
+  color: #000;
 }
