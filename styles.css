@@ -1,7 +1,7 @@
 :root {
     --bs-body-font-family: "Playfair Display";
-
 }
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -102,4 +102,21 @@
 .btn-toggle-nav a:hover,
 .btn-toggle-nav a:focus {
   background-color: #e6ddcf;
+}
+
+
+.btn-primary {
+  background-color: #654C3E;
+  border-color: #1e1e1e;
+  color: #DDC9B5;  
+}
+
+.btn-primary:hover {
+  background-color: #6b564b;
+  border-color: #1e1e1e;
+  color: #DDC9B5;
+}
+
+table td input {
+  width: 50px;
 }
