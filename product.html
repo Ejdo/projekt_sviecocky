@@ -9,7 +9,6 @@
       href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
       rel="stylesheet"
     />
-
     <script
       src="https://kit.fontawesome.com/3292bd839a.js"
       crossorigin="anonymous"
@@ -20,7 +19,7 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../styles.css" />
 
     <title>Serenity Candles - Home</title>
   </head>
@@ -86,155 +85,93 @@
         </div>
       </nav>
     </header>
-    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button
-          type="button"
-          data-bs-target="#myCarousel"
-          data-bs-slide-to="0"
-          class="active"
-          aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#myCarousel"
-          data-bs-slide-to="1"
-          aria-label="Slide 2"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#myCarousel"
-          data-bs-slide-to="2"
-          aria-label="Slide 3"
-        ></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <svg
-            class="bd-placeholder-img"
-            width="100%"
-            height="100%"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            preserveAspectRatio="xMidYMid slice"
-            focusable="false"
-          >
-            <rect width="100%" height="100%" fill="#e6ddcf" />
-          </svg>
 
-          <div class="container">
-            <div class="carousel-caption text-start">
-              <h1>New Spring Collection</h1>
-              <p>
-                Indulge in the refreshing scents of the season with our latest
-                collection of scented candles, carefully crafted to capture the
-                essence of springtime blooms and the rejuvenating energy of the
-                outdoors.
-              </p>
-              <p><a class="btn btn-lg btn-primary" href="#">Shop now</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <svg
-            class="bd-placeholder-img"
-            width="100%"
-            height="100%"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            preserveAspectRatio="xMidYMid slice"
-            focusable="false"
-          >
-            <rect width="100%" height="100%" fill="#e6ddcf" />
-          </svg>
-
-          <div class="container">
-            <div class="carousel-caption text-start">
-              <h1>New Spring Collection</h1>
-              <p>
-                Indulge in the refreshing scents of the season with our latest
-                collection of scented candles, carefully crafted to capture the
-                essence of springtime blooms and the rejuvenating energy of the
-                outdoors.
-              </p>
-              <p><a class="btn btn-lg btn-primary" href="#">Shop now</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <svg
-            class="bd-placeholder-img"
-            width="100%"
-            height="100%"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            preserveAspectRatio="xMidYMid slice"
-            focusable="false"
-          >
-            <rect width="100%" height="100%" fill="#e6ddcf" />
-          </svg>
-
-          <div class="container">
-            <div class="carousel-caption text-start">
-              <h1>New Spring Collection</h1>
-              <p>
-                Indulge in the refreshing scents of the season with our latest
-                collection of scented candles, carefully crafted to capture the
-                essence of springtime blooms and the rejuvenating energy of the
-                outdoors.
-              </p>
-              <p><a class="btn btn-lg btn-primary" href="#">Shop now</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#myCarousel"
-        data-bs-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#myCarousel"
-        data-bs-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
     <main class="container-xl">
-      <section class="container marketing my-5">
-        <div class="row">
-          <div class="col-lg-4">
-            <img src="images/1.svg" width="140" />
-            <p class="w-75 mx-auto">
-              Free shipping on orders €35+ in Europe (carbon-neutral shipping)
+      <section class="container-fluid my-5">
+        <div class="row my-4 align-items-center">
+          <div class="col-md-6">
+            <img src="./images/candle5.jpg" class="product-image-lg" />
+          </div>
+          <div class="col-md-6 my-4">
+            <h1>Mocha Travel Candle</h1>
+            <div class="mt-4 mb-2 product-price">
+              <span class="text-decoration-line-through">35.00 €</span>
+              <span>28.00 €</span>
+            </div>
+            <div class="d-flex">
+              <input
+                class="text-center me-3"
+                type="num"
+                value="1"
+                style="max-width: 3rem"
+              />
+              <button class="btn add-to-cart-btn" type="button">
+                Add to cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container my-5">
+        <section class="container marketing">
+          <div class="row">
+            <div class="col-lg-4">
+              <img src="./images/coffee.svg" width="140" />
+              <p class="w-75 mx-auto">
+                Dominant note in mocha scented candles, providing a warm and
+                energizing fragrance that can help stimulate the senses.
+              </p>
+            </div>
+            <div class="col-lg-4">
+              <img src="./images/chocolate.svg" width="140" />
+              <p class="w-75 mx-auto">
+                The sweet and indulgent scent of chocolate is another key
+                component providing a rich and satisfying aroma
+              </p>
+            </div>
+            <div class="col-lg-4">
+              <img src="./images/vanilla.svg" width="140" />
+              <p class="w-75 mx-auto">
+                The subtle and comforting fragrance of vanilla is often added to
+                mocha scented candles to provide a sweet and creamy base note,
+              </p>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="container my-5">
+        <div class="row align-items-center gx-5">
+          <div class="col-lg-6">
+            <h3>Item Description</h3>
+            <p>
+              Our scented candle with mocha fragrance is the perfect addition to
+              any room, filling it with a warm and inviting aroma that will make
+              you feel right at home. Made with high-quality essential oils and
+              natural soy wax, this candle is long-lasting and eco-friendly, so
+              you can enjoy the rich scent without worrying about harmful
+              chemicals or pollutants. With a burn time of up to 50 hours, this
+              candle will keep your home smelling delicious for days on end,
+              providing a cozy and comforting ambiance that's perfect for
+              relaxing evenings at home.
             </p>
           </div>
-          <div class="col-lg-4">
-            <img src="images/2.svg" width="140" />
-            <p class="w-75 mx-auto">
-              1% for the Planet member + we donate $1 to charity for every
-              candle sold
-            </p>
-          </div>
-          <div class="col-lg-4">
-            <img src="images/3.svg" width="140" />
-            <p class="w-75 mx-auto">
-              Safe ingredients, cruelty-free, vegan, no parabens, no phthalates,
-              no sulphates
+          <div class="col-lg-6 gy-5">
+            <h4>Burn Hours</h4>
+            <p>10 hours</p>
+            <h4>Ingredients</h4>
+            <p>
+              100% soy wax made in the USA, FSC-certified wood wick, and
+              fragrance oils (paraben-free, phthalate-free, vegan and
+              cruelty-free)
             </p>
           </div>
         </div>
       </section>
+
       <section class="container my-5">
-        <h2 class="text-center mb-5">Trending now</h2>
+        <h2 class="text-center mb-5">You may also like</h2>
         <div class="row">
           <div class="col-xl-3 col-sm-6 product-card">
             <div class="product-image">
