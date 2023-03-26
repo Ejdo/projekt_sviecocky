@@ -148,19 +148,24 @@
 }
 
 .btn-primary {
-  background-color: #654C3E;
+  background-color: #654c3e;
   border-color: #1e1e1e;
-  color: #DDC9B5;  
+  color: #ddc9b5;
 }
 
 .btn-primary:hover {
   background-color: #6b564b;
   border-color: #1e1e1e;
-  color: #DDC9B5;
+  color: #ddc9b5;
 }
 
 table td input {
   width: 40px;
+}
+
+.nav-icon {
+  text-decoration: none;
+  color: black;
 }
 
 .product-image-lg {
