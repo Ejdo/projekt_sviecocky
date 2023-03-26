@@ -173,13 +173,13 @@ table td input {
   font-size: 24px;
 }
 
-.add-to-cart-btn {
+.main-button {
   background-color: #654c3e;
   color: white;
   border-radius: 0;
 }
 
-.add-to-cart-btn:hover {
+.main-button:hover {
   background-color: white;
   color: #000;
 }
@@ -218,4 +218,40 @@ table td input {
 
 .form-control {
   border-radius: 0;
+}
+
+/* LOGIN / REGISTRATION*/
+
+.form-container {
+  margin-top: 200px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Form fields */
+.form-group {
+  margin-bottom: 30px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Create account button */
+.btn-create-account {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #654c3e;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
 }
