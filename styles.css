@@ -1,7 +1,7 @@
 :root {
-    --bs-body-font-family: "Playfair Display";
-
+  --bs-body-font-family: "Playfair Display", serif;
 }
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -42,20 +42,51 @@
   text-align: center;
 }
 
-.product-image {
-  height: 300px;
-  object-fit:cover;
+.product-card {
+  text-align: center;
 }
 
-.btn-product {
-  background-color: #654C3E;
-  color: white;
-  width: 60%;
-  border-radius: 0;
+.product-card .product-image {
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
-.btn-product:hover {
-  border-color: #654C3E;
+.product-card .product-image a img {
+  display: block;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.product-card .add-to-cart {
+  background: #e6ddcf;
+  color: #000;
+  font-size: 16px;
+  letter-spacing: 2px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  padding: 10px 26px;
+  bottom: -50px;
+  transition: all 0.3s ease 0s;
+}
+.product-card:hover .add-to-cart {
+  bottom: 0;
+}
+.product-card .add-to-cart:hover {
+  text-shadow: 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.product-card .product-name {
+  text-align: left;
+  font-size: 16px;
+}
+.product-card .price {
+  text-align: right;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 18px;
 }
 
 .card {
@@ -65,15 +96,15 @@
 .btn-toggle {
   display: inline-flex;
   align-items: center;
-  padding: .25rem .5rem;
+  padding: 0.25rem 0.5rem;
   font-weight: 600;
-  color: rgba(0, 0, 0, .65);
+  color: rgba(0, 0, 0, 0.65);
   background-color: transparent;
   border: 0;
 }
 .btn-toggle:hover,
 .btn-toggle:focus {
-  color: rgba(0, 0, 0, .85);
+  color: rgba(0, 0, 0, 0.85);
   background-color: #e6ddcf;
 }
 
@@ -81,12 +112,12 @@
   width: 1.25em;
   line-height: 0;
   content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
-  transition: transform .35s ease;
-  transform-origin: .5em 50%;
+  transition: transform 0.35s ease;
+  transform-origin: 0.5em 50%;
 }
 
 .btn-toggle[aria-expanded="true"] {
-  color: rgba(0, 0, 0, .85);
+  color: rgba(0, 0, 0, 0.85);
 }
 .btn-toggle[aria-expanded="true"]::before {
   transform: rotate(90deg);
@@ -94,12 +125,97 @@
 
 .btn-toggle-nav a {
   display: inline-flex;
-  padding: .1875rem .5rem;
-  margin-top: .125rem;
+  padding: 0.1875rem 0.5rem;
+  margin-top: 0.125rem;
   margin-left: 1.25rem;
   text-decoration: none;
 }
+
 .btn-toggle-nav a:hover,
 .btn-toggle-nav a:focus {
   background-color: #e6ddcf;
+}
+
+.btn-primary {
+  background-color: #654c3e;
+  border-color: #1e1e1e;
+  color: #ddc9b5;
+}
+
+.btn-primary:hover {
+  background-color: #6b564b;
+  border-color: #1e1e1e;
+  color: #ddc9b5;
+}
+
+table td input {
+  width: 40px;
+}
+
+.nav-icon {
+  text-decoration: none;
+  color: black;
+}
+
+.product-image-lg {
+  object-fit: cover;
+  max-height: 500px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .product-image-lg {
+    width: 80%;
+  }
+}
+
+.product-price {
+  font-size: 24px;
+}
+
+.add-to-cart-btn {
+  background-color: #654c3e;
+  color: white;
+  border-radius: 0;
+}
+
+.add-to-cart-btn:hover {
+  background-color: white;
+  color: #000;
+}
+
+.page-numbers {
+  display: flex;
+  list-style: none;
+}
+
+.page-number-link {
+  color: black;
+  font-size: large;
+  position: relative;
+  display: block;
+  padding: 0.5rem;
+  text-decoration: none;
+}
+
+.page-number-button .active {
+  font-weight: bold;
+}
+
+.page-number-link:hover {
+  text-decoration: underline;
+}
+
+.dropdown-toggle {
+  background: white;
+  border-radius: 0;
+  color: black;
+}
+
+.dropdown-menu {
+  border-radius: 0;
+}
+
+.form-control {
+  border-radius: 0;
 }
