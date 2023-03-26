@@ -68,8 +68,6 @@
     </nav>
   </header>
 
-
-
   <main class="container my-5">
     <section class="row">
       <div class="col">
@@ -84,11 +82,11 @@
           <div class="checkbox-form md-8">
             <h3>Contact information</h3>
             <div class="col-md-12">
-                <p>
-                  <label>Email <span class="required">*</span></label>
-                  <input type="text" name="email" class="form-control" />
-                </p>
-              </div>
+              <p>
+                <label>Email <span class="required">*</span></label>
+                <input type="text" name="email" class="form-control" />
+              </p>
+            </div>
           </div>
           <div class="checkbox-form md-8">
             <h3>Billing Details</h3>
@@ -101,9 +99,7 @@
               </div>
               <div class="col-md-4">
                 <p>
-                  <label
-                    >Last name <span class="required">*</span></label
-                  >
+                  <label>Last name <span class="required">*</span></label>
                   <input type="text" name="lname" />
                 </p>
               </div>
@@ -121,9 +117,7 @@
               </div>
               <div class="col-md-4">
                 <p>
-                  <label
-                    >Country <span class="required">*</span></label
-                  >
+                  <label>Country <span class="required">*</span></label>
                   <input type="text" name="country" />
                 </p>
               </div>
@@ -144,11 +138,94 @@
           <div class="checkbox-form md-8">
             <h3>Shipping</h3>
             <div class="col-md-12">
-                <p>
-                  <label>Email <span class="required">*</span></label>
-                  <input type="text" name="email" class="form-control" />
-                </p>
-              </div>
+              <p>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="shipping"
+                  id="standart"
+                />
+                <label class="form-check-label" for="standart">
+                  Standart
+                </label>
+              </p>
+            </div>
+            <div class="col-md-12">
+              <p>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="shipping"
+                  id="UPS"
+                />
+                <label class="form-check-label" for="UPS">
+                  UPS
+                </label>
+              </p>
+            </div>
+            <div class="col-md-12">
+              <p>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="shipping"
+                  id="UPS3D"
+                />
+                <label class="form-check-label" for="UPS3D">
+                  UPS Three-Day Select
+                </label>
+              </p>
+            </div>
+            <div class="col-md-12">
+              <p>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="shipping"
+                  id="UPSAir"
+                />
+                <label class="form-check-label" for="UPSAir">
+                  UPS Next Day Air
+                </label>
+              </p>
+            </div>
+          </div>
+          <div class="checkbox-form md-8">
+            <article>
+              <h3>Payment</h3>
+              <p>
+                All transactions are secure and encrypted.
+              </p>
+            </article>
+            <div class="col-md-12">
+              <p>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="payment"
+                  id="card"
+                />
+                <label class="form-check-label" for="card">
+                  Credit card
+                </label>
+              </p>
+            </div>
+            <div class="col-md-12">
+              <p>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="payment"
+                  id="PayPal"
+                />
+                <label class="form-check-label" for="PayPal">
+                  PayPal
+                </label>
+              </p>
+            </div>
+            
+              
+            
           </div>
         </form>
       </div>
@@ -162,6 +239,14 @@
               <td class="text-center">€57.98</td>
             </tr>
             <tr>
+              <td>Tax</td>
+              <td class="text-center">€9.12</td>
+            </tr>
+            <tr>
+              <td>Shipping</td>
+              <td class="text-center">€8.59</td>
+            </tr>
+            <tr>
               <td>Order total</td>
               <td class="text-center">€57.98</td>
             </tr>
@@ -169,7 +254,6 @@
         </table>
         <button type="button" class="btn btn-product">Checkout</button>
       </div>
-    
     </section>
   </main>
   <footer class="py-3 mt-5 bg-white pt-100">
