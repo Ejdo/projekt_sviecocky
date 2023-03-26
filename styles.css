@@ -89,17 +89,6 @@
   font-size: 18px;
 }
 
-.btn-product {
-  background-color: #654c3e;
-  color: white;
-  width: 60%;
-  border-radius: 0;
-}
-
-.btn-product:hover {
-  border-color: #654c3e;
-}
-
 .card {
   border: 0;
 }
@@ -224,5 +213,9 @@ table td input {
 }
 
 .dropdown-menu {
+  border-radius: 0;
+}
+
+.form-control {
   border-radius: 0;
 }
