@@ -194,3 +194,35 @@ table td input {
   background-color: white;
   color: #000;
 }
+
+.page-numbers {
+  display: flex;
+  list-style: none;
+}
+
+.page-number-link {
+  color: black;
+  font-size: large;
+  position: relative;
+  display: block;
+  padding: 0.5rem;
+  text-decoration: none;
+}
+
+.page-number-button .active {
+  font-weight: bold;
+}
+
+.page-number-link:hover {
+  text-decoration: underline;
+}
+
+.dropdown-toggle {
+  background: white;
+  border-radius: 0;
+  color: black;
+}
+
+.dropdown-menu {
+  border-radius: 0;
+}
