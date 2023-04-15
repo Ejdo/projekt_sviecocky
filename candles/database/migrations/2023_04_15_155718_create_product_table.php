@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('description', 250);
             $table->string('ingredients', 250);
+            $table->string('color', 20);
             $table->float('price');
             $table->float('discount');
             $table->integer('stock');
@@ -31,8 +32,6 @@ return new class extends Migration
             $table->foreign('type_id')->references('id')->on('product_type');
             $table->bigInteger('scent_family_id');
             $table->foreign('scent_family_id')->references('id')->on('scent_family');
-            $table->bigInteger('color_id');
-            $table->foreign('color_id')->references('id')->on('color');
             $table->bigInteger('photo_id');
         });
 
