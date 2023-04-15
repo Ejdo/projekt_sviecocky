@@ -32,8 +32,7 @@
       <nav class="navbar navbar-expand-md navbar-light bg-white shadow py-1">
         <div class="container-fluid row">
           <a href="{{ route('home') }}" class="navbar-brand col-2 p-0">
-            <img src="{{ asset('images/logo.svg
-              ') }}" height="60" />
+            <img src="{{ asset('images/logo.svg') }}" height="60" />
           </a>
           <div
             class="collapse navbar-collapse col-8 justify-content-center"

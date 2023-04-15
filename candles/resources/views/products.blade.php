@@ -114,69 +114,39 @@
         </div>
         <hr class="border-3 opacity-50" />
         <div class="row">
-          <div class="col-xl-4 col-sm-6 product-card">
-            <div class="product-image">
-              <a href="#">
-                <img src="../images/candle1.jpg" />
-              </a>
-              <a href="#" class="add-to-cart">Add to Cart</a>
+
+          @foreach ($products as $product)
+            <div class="col-xl-4 col-sm-6 product-card">
+              <div class="product-image">
+                <a href="{{ route('product_detail',  $product->id) }}">
+                  <img src=$product->image_path />
+                </a>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+              </div>
+              <div class="row py-2">
+                <p class="col product-name">$product->name</p>
+                <p class="col price">$product->price</p>
+              </div>
             </div>
-            <div class="row py-2">
-              <p class="col product-name">Apple & Sweet Fig</p>
-              <p class="col price">9.00 €</p>
-            </div>
-          </div>
-          <div class="col-xl-4 col-sm-6 product-card">
-            <div class="product-image">
-              <a href="#">
-                <img src="../images/candle2.jpg" />
-              </a>
-              <a href="#" class="add-to-cart">Add to Cart</a>
-            </div>
-            <div class="row py-2">
-              <p class="col product-name">Spiced Orange</p>
-              <p class="col price">9.00 €</p>
-            </div>
-          </div>
-          <div class="col-xl-4 col-sm-6 product-card">
-            <div class="product-image">
-              <a href="#">
-                <img src="../images/candle3.jpg" />
-              </a>
-              <a href="#" class="add-to-cart">Add to Cart</a>
-            </div>
-            <div class="row py-2">
-              <p class="col product-name">Aloe Vera</p>
-              <p class="col price">9.00 €</p>
-            </div>
-          </div>
-          <div class="col-xl-4 col-sm-6 product-card">
-            <div class="product-image">
-              <a href="#">
-                <img src="../images/candle4.jpg" />
-              </a>
-              <a href="#" class="add-to-cart">Add to Cart</a>
-            </div>
-            <div class="row py-2">
-              <p class="col product-name">Black Cherry</p>
-              <p class="col price">9.00 €</p>
-            </div>
-          </div>
+          @endforeach
+
         </div>
+
         <hr class="border-3 opacity-50" />
+
         <nav>
           <ul class="page-numbers justify-content-end">
             <li class="page-number-button">
-              <a class="page-number-link active" href="#">1</a>
+              <a class="page-number-link active" href="{{ route('all_products', 1) }}">1</a>
             </li>
+            @for ($i = 1; $i <= $lastPage; $i++)
             <li class="page-number-button">
-              <a class="page-number-link" href="#">2</a>
+              <a class="page-number-link" href="{{ route('all_products', $i) }}">{{ $i }}</a>
             </li>
-            <li class="page-number-button">
-              <a class="page-number-link" href="#">3</a>
-            </li>
+            @endfor
           </ul>
         </nav>
+
       </section>
     </main>
 @endsection
