@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('order', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('address_id');
-            $table->foreign('address_id')->references('id')->on('address');
+            $table->foreign('address_id')->references('id')->on('addresses');
             $table->smallInteger('status');
             $table->timestamp('created_at');
             $table->bigInteger('delivery_option_id');
-            $table->foreign('delivery_option_id')->references('id')->on('delivery_option');
+            $table->foreign('delivery_option_id')->references('id')->on('delivery_options');
             $table->bigInteger('payment_option_id');
-            $table->foreign('payment_option_id')->references('id')->on('payment_option');
+            $table->foreign('payment_option_id')->references('id')->on('payment_options');
             $table->float('tax');
             $table->float('total_price');
         });
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order');
+        Schema::dropIfExists('orders');
     }
 };

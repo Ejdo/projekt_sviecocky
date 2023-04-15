@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('cart_item', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('product');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->integer('quantity');
             $table->float('price');
             $table->float('discount');

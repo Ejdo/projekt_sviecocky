@@ -9,6 +9,11 @@ class Product extends Model
 {
     use HasFactory;
 
+
+    public $timestamps = false;
+    protected $table = 'products';
+
+
     protected $fillable = [
         'category_id',
         'ean_code',
@@ -25,7 +30,6 @@ class Product extends Model
         'color',
         'image_path',
         'trending',
-        'size',
     ];
 
     public function category()

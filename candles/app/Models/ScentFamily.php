@@ -9,6 +9,9 @@ class ScentFamily extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+    protected $table = 'scent_families';
+
     protected $fillable = [
         'scent1_id',
         'scent2_id',
@@ -22,16 +25,16 @@ class ScentFamily extends Model
 
     public function scent1()
     {
-        return $this->belongsTo(Scent::class, 'scent1_id');
+        return $this->belongsTo(ScentType::class, 'scent1_id');
     }
 
     public function scent2()
     {
-        return $this->belongsTo(Scent::class, 'scent2_id');
+        return $this->belongsTo(ScentType::class, 'scent2_id');
     }
 
     public function scent3()
     {
-        return $this->belongsTo(Scent::class, 'scent3_id');
+        return $this->belongsTo(ScentType::class, 'scent3_id');
     }
 }

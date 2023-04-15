@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('scent_family', function (Blueprint $table) {
+        Schema::create('scent_families', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('scent1_id');
-            $table->foreign('scent1_id')->references('id')->on('scent_type');
+            $table->foreign('scent1_id')->references('id')->on('scent_types');
             $table->bigInteger('scent2_id');
-            $table->foreign('scent2_id')->references('id')->on('scent_type');
+            $table->foreign('scent2_id')->references('id')->on('scent_types');
             $table->bigInteger('scent3_id');
-            $table->foreign('scent3_id')->references('id')->on('scent_type');
+            $table->foreign('scent3_id')->references('id')->on('scent_types');
         });
 
         Schema::enableForeignKeyConstraints();
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('scent_family');
+        Schema::dropIfExists('scent_families');
     }
 };

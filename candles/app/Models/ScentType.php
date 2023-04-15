@@ -9,6 +9,8 @@ class ScentType extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'name',
         'img',

@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('scent_type', function (Blueprint $table) {
+        Schema::create('scent_types', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
-            $table->string('description', 200);
-            $table->bigInteger('photo_id');
+            $table->text('description');
+            $table->string('photo_path', 200);
         });
 
         Schema::enableForeignKeyConstraints();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('scent_type');
+        Schema::dropIfExists('scent_types');
     }
 };

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('payment_option', function (Blueprint $table) {
+        Schema::create('payment_options', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
             $table->float('price');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payment_option');
+        Schema::dropIfExists('payment_options');
     }
 };

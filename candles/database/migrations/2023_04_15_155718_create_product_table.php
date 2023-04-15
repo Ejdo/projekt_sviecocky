@@ -13,26 +13,27 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('product', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('product_category');
+            $table->foreign('category_id')->references('id')->on('product_categories');
             $table->string('ean_code', 13);
             $table->string('name', 100);
-            $table->string('description', 250);
-            $table->string('ingredients', 250);
+            $table->text('description');
+            $table->text('ingredients');
             $table->string('color', 20);
             $table->float('price');
+            $table->boolean('trending')->default(false);
             $table->float('discount');
             $table->integer('stock');
             $table->integer('burn_hours');
             $table->bigInteger('brand_id');
-            $table->foreign('brand_id')->references('id')->on('brand');
+            $table->foreign('brand_id')->references('id')->on('brands');
             $table->bigInteger('type_id');
-            $table->foreign('type_id')->references('id')->on('product_type');
+            $table->foreign('type_id')->references('id')->on('product_types');
             $table->bigInteger('scent_family_id');
-            $table->foreign('scent_family_id')->references('id')->on('scent_family');
-            $table->bigInteger('photo_id');
+            $table->foreign('scent_family_id')->references('id')->on('scent_families');
+            $table->string('photo_path', 250);
         });
 
         Schema::enableForeignKeyConstraints();
@@ -43,6 +44,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product');
+        Schema::dropIfExists('products');
     }
 };
