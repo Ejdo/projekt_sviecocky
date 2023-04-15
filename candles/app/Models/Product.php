@@ -22,9 +22,10 @@ class Product extends Model
         'brand_id',
         'type_id',
         'scent_family_id',
-        'color_id',
-        'photo_id',
+        'color',
+        'image_path',
         'trending',
+        'size',
     ];
 
     public function category()

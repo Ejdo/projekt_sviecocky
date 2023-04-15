@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Brand extends Model
+class ScentType extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'name',
+        'img',
         'description',
     ];
 
-    public function products()
+    public function scentFamilies()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(ScentFamily::class);
     }
 }
