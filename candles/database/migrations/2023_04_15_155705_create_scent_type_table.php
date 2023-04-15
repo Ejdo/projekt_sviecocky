@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100);
             $table->string('description', 200);
+            $table->bigInteger('photo_id');
         });
 
         Schema::enableForeignKeyConstraints();
