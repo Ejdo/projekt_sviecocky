@@ -1,90 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/3292bd839a.js"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="../styles.css" />
+@extends('html_template')
 
-    <title>Serenity Candles - Candles</title>
-  </head>
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-md navbar-light bg-white shadow py-1">
-        <div class="container-fluid row">
-          <a href="../index.html" class="navbar-brand col-2 p-0">
-            <img src="../images/logo.svg" height="60" />
-          </a>
-          <div
-            class="collapse navbar-collapse col-8 justify-content-center"
-            id="navbarCollapse"
-          >
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a href="./candles.html" class="nav-link">Candles</a>
-              </li>
-              <li class="nav-item">
-                <a href="./lanterns.html" class="nav-item nav-link"
-                  >Lanterns</a
-                >
-              </li>
-              <li class="nav-item">
-                <a href="./incense.html" class="nav-item nav-link"
-                  >Incense Sticks</a
-                >
-              </li>
-              <li class="nav-item">
-                <a href="./oils.html" class="nav-item nav-link"
-                  >Essential Oils</a
-                >
-              </li>
-              <li class="nav-item">
-                <a href="./diffusers.html" class="nav-item nav-link"
-                  >Diffusers</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <div class="d-lg-flex col-2 justify-content-end d-none d-md-flex">
-            <div class="row gx-3">
-              <a
-                href="../search.html"
-                class="fa-solid fa-magnifying-glass col nav-icon"
-              ></a>
-              <a href="../login.html" class="fa-solid fa-user col nav-icon"></a>
-              <a
-                href="../cart.html"
-                class="col fa-solid fa-basket-shopping nav-icon"
-              ></a>
-            </div>
-          </div>
-          <button
-            type="button"
-            class="navbar-toggler col-auto"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarCollapse"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </nav>
-    </header>
+@section('content') 
 
     <div class="row m-0" style="height: 300px; background-color: #e6ddcf">
       <div class="col text-center my-auto mx-5">
@@ -98,6 +14,7 @@
         <img src="../images/candles_header.png" />
       </div>
     </div>
+
     <main class="container-xl d-flex p-5">
       <aside class="col mx-3 d-none d-sm-flex">
         <div class="flex-shrink-0 bg-white">
@@ -262,46 +179,4 @@
         </nav>
       </section>
     </main>
-
-    <footer class="py-3 mt-5 bg-white">
-      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-muted">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-muted">Payment</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-muted">Shipping</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-muted">Terms of use</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-muted">Return & Exchanges</a>
-        </li>
-      </ul>
-      <p class="text-center text-muted">© 2023 Serenity Candles, Inc</p>
-    </footer>
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
+@endsection

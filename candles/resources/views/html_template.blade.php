@@ -1,4 +1,6 @@
-<head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -7,6 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
       rel="stylesheet"
     />
+
     <script
       src="https://kit.fontawesome.com/3292bd839a.js"
       crossorigin="anonymous"
@@ -17,16 +20,20 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./styles.css" />
-  
-    <title>Serenity Candles - Search</title>
+    
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
+
+
+    <title>Serenity Candles</title>
   </head>
+
   <body>
     <header>
       <nav class="navbar navbar-expand-md navbar-light bg-white shadow py-1">
         <div class="container-fluid row">
-          <a href="./index.html" class="navbar-brand col-2 p-0">
-            <img src="./images/logo.svg" height="60" />
+          <a href="{{ route('home') }}" class="navbar-brand col-2 p-0">
+            <img src="{{ asset('images/logo.svg
+              ') }}" height="60" />
           </a>
           <div
             class="collapse navbar-collapse col-8 justify-content-center"
@@ -34,40 +41,32 @@
           >
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a href="./categories/candles.html" class="nav-link">Candles</a>
+                <a href="{{ route('products', 'candle') }}" class="nav-link">Candles</a>
               </li>
               <li class="nav-item">
-                <a href="./categories/lanterns.html" class="nav-item nav-link"
-                  >Lanterns</a
-                >
+                <a href="{{ route('products', 'latern') }}" class="nav-item nav-link">Lanterns</a>
               </li>
               <li class="nav-item">
-                <a href="./categories/incense.html" class="nav-item nav-link"
-                  >Incense Sticks</a
-                >
+                <a href="{{ route('products', 'incense_stick') }}" class="nav-item nav-link">Incense Sticks</a >
               </li>
               <li class="nav-item">
-                <a href="./categories/oils.html" class="nav-item nav-link"
-                  >Essential Oils</a
-                >
+                <a href="{{ route('products', 'essential_oil') }}" class="nav-item nav-link">Essential Oils</a>
               </li>
               <li class="nav-item">
-                <a href="./categories/diffusers.html" class="nav-item nav-link"
-                  >Diffusers</a
-                >
+                <a href="{{ route('products', 'diffuser') }}" class="nav-item nav-link">Diffusers</a>
               </li>
             </ul>
           </div>
-  
+
           <div class="d-lg-flex col-2 justify-content-end d-none d-md-flex">
             <div class="row gx-3">
               <a
-                href="./search.html"
+                href="{{ route('search') }}"
                 class="fa-solid fa-magnifying-glass col nav-icon"
               ></a>
-              <a href="./login.html" class="fa-solid fa-user col nav-icon"></a>
+              <a href="{{ route('login') }}" class="fa-solid fa-user col nav-icon"></a>
               <a
-                href="./cart.html"
+                href="{{ route('cart') }}"
                 class="col fa-solid fa-basket-shopping nav-icon"
               ></a>
             </div>
@@ -83,32 +82,10 @@
         </div>
       </nav>
     </header>
-  
-    <main class="container-xl">
-      <section class="row ">
-        <div class="col">
-          <h1>Search</h1>
-          <hr class="border-3 opacity-50" />
-        </div>
-      </section>
-  
-      <section>
-          <form action="#">
-            <div class="row justify-content-center">
-                <p class="col-4">
-                  <input type="text" name="search" class="form-control" />
-                </p>
-                <a class="btn main-button col-1 h-50" role="button" href="./checkout.html"
-                >Search</a
-              >
-            </div>
-          </form>
-        
-  
 
-      </section>
-    </main>
-    <footer class="py-3 mt-5 bg-white pt-100 fixed-bottom">
+    @yield('content')     
+
+    <footer class="py-3 mt-5 bg-white">
       <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item">
           <a href="#" class="nav-link px-2 text-muted">Contact</a>
@@ -128,5 +105,10 @@
       </ul>
       <p class="text-center text-muted">© 2023 Serenity Candles, Inc</p>
     </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
   </body>
-  
+</html>
