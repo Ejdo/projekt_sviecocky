@@ -24,7 +24,7 @@ Route::get('/', 'App\Http\Controllers\HomeController@index') ->name('home');
 
 
 Route::get('/products/{type}/{page?}', 'App\Http\Controllers\ProductController@show_by_type') ->name('products');
-Route::get('/products/{page?}', 'App\Http\Controllers\ProductController@show_all_products') ->name('all_products');
+Route::get('/products', 'App\Http\Controllers\ProductController@show_all_products') ->name('all_products');
 Route::get('/product/{id}', 'App\Http\Controllers\ProductController@show_product_detail') ->name('product_detail');
 
 
