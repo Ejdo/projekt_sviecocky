@@ -21,6 +21,13 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        (new BrandSeeder)->run();
+        (new ScentSeeder)->run();
+        (new ScentFamilySeeder)->run();
+        (new ProductTypeSeeder)->run();
+        (new ProductCategorySeeder)->run();
         (new ProductSeeder)->run();
+        (new UserSeeder)->run();
+
     }
 }
