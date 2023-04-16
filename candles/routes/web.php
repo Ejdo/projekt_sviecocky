@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +29,10 @@ Route::get('/product/{id}', 'App\Http\Controllers\ProductController@show_product
 
 
 Route::get('/cart', 'App\Http\Controllers\CartController@show_cart') ->name('cart');
+Route::get('/add-to-cart/{id}', 'App\Http\Controllers\CartController@addToCart')->name('add');
+
+
+
 Route::get('/checkout', 'App\Http\Controllers\CheckoutController@show_checkout') ->name('checkout');
 Route::get('/login', 'App\Http\Controllers\UserController@show_login') ->name('login');
 Route::get('/registration', 'App\Http\Controllers\UserController@show_reg') ->name('registration');
