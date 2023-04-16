@@ -15,9 +15,92 @@ class ScentFamilySeeder extends Seeder
     {
         // Scent Family
         ScentFamily::create([
-            'scent1_id' => 1,
-            'scent2_id' => 2,
-            'scent3_id' => 3,
+            'scent_id' => 1,
+            'product_id' =>1,
+        ]);
+
+        // Scent Family
+        ScentFamily::create([
+            'scent_id' => 2,
+            'product_id' =>1,
+        ]);
+
+        // Scent Family
+        ScentFamily::create([
+            'scent_id' => 3,
+            'product_id' =>1,
+        ]);
+
+        // Scent Family
+        ScentFamily::create([
+            'scent_id' => 1,
+            'product_id' =>2,
+        ]);
+
+        // Scent Family
+        ScentFamily::create([
+            'scent_id' => 2,
+            'product_id' =>2,
+        ]);
+
+        // Scent Family
+        ScentFamily::create([
+            'scent_id' => 3,
+            'product_id' =>2,
+        ]);
+
+        // Scent Family
+        ScentFamily::create([
+            'scent_id' => 1,
+            'product_id' =>3,
+        ]);
+
+        // Scent Family
+        ScentFamily::create([
+            'scent_id' => 2,
+            'product_id' =>3,
+        ]);
+
+        // Scent Family
+        ScentFamily::create([
+            'scent_id' => 3,
+            'product_id' =>3,
+        ]);
+
+        // Scent Family
+        ScentFamily::create([
+            'scent_id' => 1,
+            'product_id' =>4,
+        ]);
+
+        // Scent Family
+        ScentFamily::create([
+            'scent_id' => 2,
+            'product_id' =>4,
+        ]);
+
+        // Scent Family
+        ScentFamily::create([
+            'scent_id' => 3,
+            'product_id' =>4,
+        ]);
+
+        // Scent Family
+        ScentFamily::create([
+            'scent_id' => 1,
+            'product_id' =>5,
+        ]);
+
+        // Scent Family
+        ScentFamily::create([
+            'scent_id' => 2,
+            'product_id' =>5,
+        ]);
+
+        // Scent Family
+        ScentFamily::create([
+            'scent_id' => 3,
+            'product_id' =>5,
         ]);
     }
 }

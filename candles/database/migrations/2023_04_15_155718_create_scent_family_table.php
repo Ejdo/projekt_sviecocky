@@ -15,12 +15,10 @@ return new class extends Migration
 
         Schema::create('scent_families', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('scent1_id');
-            $table->foreign('scent1_id')->references('id')->on('scent_types');
-            $table->bigInteger('scent2_id');
-            $table->foreign('scent2_id')->references('id')->on('scent_types');
-            $table->bigInteger('scent3_id');
-            $table->foreign('scent3_id')->references('id')->on('scent_types');
+            $table->bigInteger('scent_id');
+            $table->foreign('scent_id')->references('id')->on('scents');
+            $table->bigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products');
         });
 
         Schema::enableForeignKeyConstraints();

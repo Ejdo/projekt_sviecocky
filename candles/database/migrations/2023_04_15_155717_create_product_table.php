@@ -31,8 +31,6 @@ return new class extends Migration
             $table->foreign('brand_id')->references('id')->on('brands');
             $table->bigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('product_types');
-            $table->bigInteger('scent_family_id');
-            $table->foreign('scent_family_id')->references('id')->on('scent_families');
             $table->string('photo_path', 250);
         });
 
