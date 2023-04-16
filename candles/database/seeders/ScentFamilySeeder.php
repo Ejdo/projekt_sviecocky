@@ -14,9 +14,13 @@ class ScentFamilySeeder extends Seeder
      */
     public function run(): void
     {
-        $product = Product::find(1);
-        $scents = Scent::whereIn('id', ['1', '2', '3'])->get();
+        $products = Product::all();
+
+        foreach ($products as $product) {
+            $scents = Scent::whereIn('id', ['1', '2', '3'])->get();
         
-        $product->scents()->attach($scents);
+            $product->scents()->attach($scents);
+        }
+
     }
 }
