@@ -5,7 +5,7 @@
       <section class="container-fluid my-5">
         <div class="row my-4 align-items-center">
           <div class="col-md-6">
-            <img src=$product->photo_path class="product-image-lg" />
+            <img src="{{ asset($product->image_path) }}" class="product-image-lg" />
           </div>
           <div class="col-md-6 my-4">
             <h1>$product->name</h1>
@@ -31,7 +31,7 @@
           <div class="row">
             @foreach ($product->scents as $scent)
               <div class="col-lg-4">
-                <img src=$scent->image_path width="140" />
+                <img src= "{{ asset($scent->image_path) }}" width="140" />
                 <p class="w-75 mx-auto">
                   $scent->description
                 </p>
@@ -66,7 +66,7 @@
             <div class="col-xl-3 col-sm-6 product-card">
               <div class="product-image">
                 <a href="{{ route('product_detail',  $product->id) }}">
-                  <img src=$product->image_path />
+                  <img src="{{ asset('images/' . $product->image_path) }}" />
                 </a>
                 <a href="#" class="add-to-cart">Add to Cart</a>
               </div>

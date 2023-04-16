@@ -152,54 +152,22 @@
       <section class="container my-5">
         <h2 class="text-center mb-5">Trending now</h2>
         <div class="row">
-          <div class="col-xl-3 col-sm-6 product-card">
-            <div class="product-image">
-              <a href="/product.html">
-                <img src="./images/candle1.jpg" />
-              </a>
-              <a href="#" class="add-to-cart">Add to Cart</a>
-            </div>
-            <div class="row py-2">
-              <p class="col product-name">Apple & Sweet Fig</p>
-              <p class="col price">9.00 €</p>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6 product-card">
-            <div class="product-image">
-              <a href="#">
-                <img src="./images/candle2.jpg" />
-              </a>
-              <a href="#" class="add-to-cart">Add to Cart</a>
-            </div>
-            <div class="row py-2">
-              <p class="col product-name">Spiced Orange</p>
-              <p class="col price">9.00 €</p>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6 product-card">
-            <div class="product-image">
-              <a href="#">
-                <img src="./images/candle3.jpg" />
-              </a>
-              <a href="#" class="add-to-cart">Add to Cart</a>
-            </div>
-            <div class="row py-2">
-              <p class="col product-name">Aloe Vera</p>
-              <p class="col price">9.00 €</p>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6 product-card">
-            <div class="product-image">
-              <a href="#">
-                <img src="./images/candle4.jpg" />
-              </a>
-              <a href="#" class="add-to-cart">Add to Cart</a>
-            </div>
-            <div class="row py-2">
-              <p class="col product-name">Black Cherry</p>
-              <p class="col price">9.00 €</p>
-            </div>
-          </div>
+        
+          @foreach ($trending as $product)
+              <div class="col-xl-3 col-sm-6 product-card">
+                <div class="product-image">
+                  <a href="{{ route('product_detail',  $product->id) }}">
+                    <img src="{{ asset($product->photo_path) }}" />
+                  </a>
+                  <a href="{{ route('product_detail',  $product->id) }}" class="add-to-cart">Add to Cart</a>
+                </div>
+                <div class="row py-2">
+                  <p class="col product-name">{{$product->name}}</p>
+                  <p class="col price">{{number_format($product->price, 2)}} €</p>
+                </div>
+              </div>
+          @endforeach
+
         </div>
     </section>
   </main>
