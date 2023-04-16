@@ -5,11 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Product;
-use App\Models\Brand;
-use App\Models\ProductType;
-use App\Models\ProductCategory;
-use App\Models\ScentFamily;
-use App\Models\ScentType;
 
 class ProductSeeder extends Seeder
 {
@@ -17,55 +12,7 @@ class ProductSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {
-
-        // Brand modedl
-        Brand::create([
-            'name' => 'Candle CO',
-            'description' => 'Very good candles from Sweden',
-        ]);
-
-        //Category
-        ProductCategory::create([
-            'name' => 'Candles',
-            'description' => 'Things that burns',
-        ]);
-
-        // Type
-        ProductType::create([
-            'name' => 'Aroma',
-            'description' => 'Medium Aromatic candle',
-        ]);
-
-        
-
-        // Scent 1
-        ScentType::create([
-            'name' => 'Coffee',
-            'photo_path' => 'images/coffee.svg',
-            'description' => 'Dominant note in mocha scented candles, providing a warm and energizing fragrance that can help stimulate the senses.',
-        ]);
-
-        // Scent 2
-        ScentType::create([
-            'name' => 'Chocolate',
-            'photo_path' => 'images/chocolate.svg',
-            'description' => 'The sweet and indulgent scent of chocolate is another key component providing a rich and satisfying aroma',
-        ]);
-
-        // Scent 3
-        ScentType::create([
-            'name' => 'Vanilla',
-            'photo_path' => 'images/vanilla.svg',
-            'description' => 'The subtle and comforting fragrance of vanilla is often added to mocha scented candles to provide a sweet and creamy base note,',
-        ]);
-
-        // Scent Family
-        ScentFamily::create([
-            'scent1_id' => 1,
-            'scent2_id' => 2,
-            'scent3_id' => 3,
-        ]);
+    {  
 
         // Product using the Product model
         Product::create([
