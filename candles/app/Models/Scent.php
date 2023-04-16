@@ -10,6 +10,7 @@ class Scent extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $table = 'scents';
 
     protected $fillable = [
         'name',
@@ -19,6 +20,6 @@ class Scent extends Model
 
     public function products()
     {
-        return $this->belongsToMany('App\Product', 'scent_families');
+        return $this->belongsToMany(Product::class, 'scent_families');
     }
 }

@@ -48,7 +48,7 @@ class Product extends Model
 
     public function scents()
     {
-        return $this->belongsToMany('App\Scent', 'scent_families');   
+        return $this->belongsToMany(Scent::class, 'scent_families'); 
     }
 
 
