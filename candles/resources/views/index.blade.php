@@ -47,7 +47,7 @@
                 essence of springtime blooms and the rejuvenating energy of the
                 outdoors.
               </p>
-              <p><a class="btn btn-lg btn-primary" href="{{ route('all_products') }}">Shop now</a></p>
+              <p><a class="btn btn-lg btn-primary" href="{{ route('products') }}">Shop now</a></p>
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@
                 essence of springtime blooms and the rejuvenating energy of the
                 outdoors.
               </p>
-              <p><a class="btn btn-lg btn-primary" href="{{ route('all_products') }}">Shop now</a></p>
+              <p><a class="btn btn-lg btn-primary" href="{{ route('products') }}">Shop now</a></p>
             </div>
           </div>
         </div>
@@ -99,7 +99,7 @@
                 essence of springtime blooms and the rejuvenating energy of the
                 outdoors.
               </p>
-              <p><a class="btn btn-lg btn-primary" href="{{ route('all_products') }}">Shop now</a></p>
+              <p><a class="btn btn-lg btn-primary" href="{{ route('products') }}">Shop now</a></p>
             </div>
           </div>
         </div>
@@ -156,7 +156,7 @@
           @foreach ($trending as $product)
               <div class="col-xl-3 col-sm-6 product-card">
                 <div class="product-image">
-                  <a href="{{ route('product_detail',  $product->id) }}">
+                  <a href="{{ route('product_detail',  ['id' => $product->id] ) }}">
                     <img src="{{ asset($product->photo_path) }}" />
                   </a>
                   <a href="{{ route('product_detail',  $product->id) }}" class="add-to-cart">Add to Cart</a>

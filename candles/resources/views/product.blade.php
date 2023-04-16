@@ -65,7 +65,7 @@
           @foreach ($trending as $product)
             <div class="col-xl-3 col-sm-6 product-card">
               <div class="product-image">
-                <a href="{{ route('product_detail',  $product->id) }}">
+                <a href="{{ route('product_detail',  ['id' => $product->id] ) }}">
                   <img src="{{ asset($product->photo_path) }}" />
                 </a>
                 <a href="#" class="add-to-cart">Add to Cart</a>

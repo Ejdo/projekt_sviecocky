@@ -40,19 +40,19 @@
           >
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a href="{{ route('products', 'candle') }}" class="nav-link">Candles</a>
+                <a href="{{ route('products', ['category' => 'Candles']) }}" class="nav-link">Candles</a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('products', 'latern') }}" class="nav-item nav-link">Lanterns</a>
+                <a href="{{ route('products', ['category' => 'Laterns']) }}" class="nav-item nav-link">Lanterns</a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('products', 'incense_stick') }}" class="nav-item nav-link">Incense Sticks</a >
+                <a href="{{ route('products', ['category' => 'Incense Sticks']) }}" class="nav-item nav-link">Incense Sticks</a >
               </li>
               <li class="nav-item">
-                <a href="{{ route('products', 'essential_oil') }}" class="nav-item nav-link">Essential Oils</a>
+                <a href="{{ route('products', ['category' => 'Essential oils']) }}" class="nav-item nav-link">Essential Oils</a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('products', 'diffuser') }}" class="nav-item nav-link">Diffusers</a>
+                <a href="{{ route('products', ['category' => 'Diffusers']) }}" class="nav-item nav-link">Diffusers</a>
               </li>
             </ul>
           </div>
@@ -104,10 +104,13 @@
       </ul>
       <p class="text-center text-muted">© 2023 Serenity Candles, Inc</p>
     </footer>
+    
+    @yield('scripts')  
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"
     ></script>
+    
   </body>
 </html>

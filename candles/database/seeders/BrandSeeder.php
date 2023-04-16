@@ -18,5 +18,10 @@ class BrandSeeder extends Seeder
             'name' => 'Candle CO',
             'description' => 'Very good candles from Sweden',
         ]);
+
+        Brand::create([
+            'name' => 'Travel Candle',
+            'description' => 'Very good candles from Sweden',
+        ]);
     }
 }

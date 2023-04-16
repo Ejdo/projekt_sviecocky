@@ -31,8 +31,9 @@
               </button>
               <div class="collapse" id="brand-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li><a href="#" class="link-dark rounded">Brand 1</a></li>
-                  <li><a href="#" class="link-dark rounded">Brand 2</a></li>
+                 @foreach ($brands as $brand)
+                    <li><a href="{{ route('products', ['brand' => $brand->id]) }}" class="link-dark rounded">{{ $brand->name }}</a></li>
+                @endforeach
                 </ul>
               </div>
             </li>
@@ -46,8 +47,9 @@
               </button>
               <div class="collapse" id="product-type-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li><a href="#" class="link-dark rounded">Type 1</a></li>
-                  <li><a href="#" class="link-dark rounded">Type 2</a></li>
+                  @foreach ($types as $type)
+                    <li><a href="{{ route('products', ['type' => $type->id]) }}" class="link-dark rounded">{{ $type->name }}</a></li>
+                  @endforeach
                 </ul>
               </div>
             </li>
@@ -61,8 +63,9 @@
               </button>
               <div class="collapse" id="scent-family-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li><a href="#" class="link-dark rounded">Scent 1</a></li>
-                  <li><a href="#" class="link-dark rounded">Scent 2</a></li>
+                  @foreach ($scents as $scent)
+                    <li><a href="{{ route('products', ['scent' => $scent->id]) }}" class="link-dark rounded">{{ $scent->name }}</a></li>
+                  @endforeach
                 </ul>
               </div>
             </li>
@@ -76,15 +79,15 @@
               </button>
               <div class="collapse" id="color-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li><a href="#" class="link-dark rounded">White</a></li>
-                  <li><a href="#" class="link-dark rounded">Yellow</a></li>
-                  <li><a href="#" class="link-dark rounded">Orange</a></li>
-                  <li><a href="#" class="link-dark rounded">Red</a></li>
-                  <li><a href="#" class="link-dark rounded">Pink</a></li>
-                  <li><a href="#" class="link-dark rounded">Purple</a></li>
-                  <li><a href="#" class="link-dark rounded">Blue</a></li>
-                  <li><a href="#" class="link-dark rounded">Green</a></li>
-                  <li><a href="#" class="link-dark rounded">Brown</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'white']) }}" class="link-dark rounded">White</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'yellow']) }}" class="link-dark rounded">Yellow</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'orange']) }}" class="link-dark rounded">Orange</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'red']) }}" class="link-dark rounded">Red</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'pink']) }}" class="link-dark rounded">Pink</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'purple']) }}" class="link-dark rounded">Purple</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'blue']) }}" class="link-dark rounded">Blue</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'green']) }}" class="link-dark rounded">Green</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'brown']) }}" class="link-dark rounded">Brown</a></li>
                 </ul>
               </div>
             </li>
@@ -93,39 +96,32 @@
       </aside>
       <section class="col-sm-8 col-xl-9 text-center">
         <div class="justify-content-end d-flex">
-          <div class="btn-group">
-            <h5 class="pe-2">Sort by:</h5>
-            <button
-              type="button"
-              class="btn btn-secondary dropdown-toggle"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
+
+        <div class="btn-group">
+          <h5 class="pe-2">Sort by:</h5>
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Price: Low to High
-            </button>
-            <div class="dropdown-menu">
-              <button class="dropdown-item" type="button">
-                Price: High to Low
-              </button>
-              <button class="dropdown-item" type="button">Best Selling</button>
-            </div>
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{{ route('products', ['sort' => 'price_desc']) }}">Price: High to Low</a>
+            <a class="dropdown-item" href="{{ route('products', ['sort' => 'price_asc']) }}">Price: Low to High</a>
           </div>
         </div>
+      </div>
         <hr class="border-3 opacity-50" />
         <div class="row">
 
           @foreach ($products as $product)
             <div class="col-xl-4 col-sm-6 product-card">
-              <div class="{{ asset($product->image_path) }}">
-                <a href="{{ route('product_detail',  $product->id) }}">
-                  <img src=$product->photo_path />
+              <div class="product-image">
+                <a href="{{ route('product_detail', ['id'=>$product->id]) }}">
+                  <img src="{{ asset($product->photo_path) }}" />
                 </a>
                 <a href="#" class="add-to-cart">Add to Cart</a>
               </div>
               <div class="row py-2">
-                <p class="col product-name">$product->name</p>
-                <p class="col price">$product->price</p>
+                <p class="col product-name"> {{ $product->name}} </p>
+                <p class="col price"> {{number_format($product->price, 2)}} </p>
               </div>
             </div>
           @endforeach
@@ -134,19 +130,29 @@
 
         <hr class="border-3 opacity-50" />
 
-        <nav>
-          <ul class="page-numbers justify-content-end">
-            <li class="page-number-button">
-              <a class="page-number-link active" href="{{ route('all_products', 1) }}">1</a>
-            </li>
-            @for ($i = 1; $i <= $lastPage; $i++)
-            <li class="page-number-button">
-              <a class="page-number-link" href="{{ route('all_products', $i) }}">{{ $i }}</a>
-            </li>
-            @endfor
-          </ul>
+        <nav class="d-flex justify-content-center">
+          {!! $products->links() !!}
         </nav>
 
       </section>
     </main>
+@endsection
+
+
+@section('content')
+  <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
 @endsection
