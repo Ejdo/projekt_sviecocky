@@ -4,7 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\ScentFamily;
+use App\Models\Scent;
+use App\Models\Product;
 
 class ScentFamilySeeder extends Seeder
 {
@@ -13,94 +14,9 @@ class ScentFamilySeeder extends Seeder
      */
     public function run(): void
     {
-        // Scent Family
-        ScentFamily::create([
-            'scent_id' => 1,
-            'product_id' =>1,
-        ]);
-
-        // Scent Family
-        ScentFamily::create([
-            'scent_id' => 2,
-            'product_id' =>1,
-        ]);
-
-        // Scent Family
-        ScentFamily::create([
-            'scent_id' => 3,
-            'product_id' =>1,
-        ]);
-
-        // Scent Family
-        ScentFamily::create([
-            'scent_id' => 1,
-            'product_id' =>2,
-        ]);
-
-        // Scent Family
-        ScentFamily::create([
-            'scent_id' => 2,
-            'product_id' =>2,
-        ]);
-
-        // Scent Family
-        ScentFamily::create([
-            'scent_id' => 3,
-            'product_id' =>2,
-        ]);
-
-        // Scent Family
-        ScentFamily::create([
-            'scent_id' => 1,
-            'product_id' =>3,
-        ]);
-
-        // Scent Family
-        ScentFamily::create([
-            'scent_id' => 2,
-            'product_id' =>3,
-        ]);
-
-        // Scent Family
-        ScentFamily::create([
-            'scent_id' => 3,
-            'product_id' =>3,
-        ]);
-
-        // Scent Family
-        ScentFamily::create([
-            'scent_id' => 1,
-            'product_id' =>4,
-        ]);
-
-        // Scent Family
-        ScentFamily::create([
-            'scent_id' => 2,
-            'product_id' =>4,
-        ]);
-
-        // Scent Family
-        ScentFamily::create([
-            'scent_id' => 3,
-            'product_id' =>4,
-        ]);
-
-        // Scent Family
-        ScentFamily::create([
-            'scent_id' => 1,
-            'product_id' =>5,
-        ]);
-
-        // Scent Family
-        ScentFamily::create([
-            'scent_id' => 2,
-            'product_id' =>5,
-        ]);
-
-        // Scent Family
-        ScentFamily::create([
-            'scent_id' => 3,
-            'product_id' =>5,
-        ]);
+        $product = Product::find(1);
+        $scents = Scent::whereIn('id', ['1', '2', '3'])->get();
+        
+        $product->scents()->attach($scents);
     }
 }
