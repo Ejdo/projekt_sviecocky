@@ -26,7 +26,6 @@ class Product extends Model
         'stock',
         'brand_id',
         'type_id',
-        'scent_family_id',
         'color',
         'image_path',
         'trending',
@@ -47,9 +46,10 @@ class Product extends Model
         return $this->belongsTo(ProductType::class);
     }
 
-    public function scentFamily()
+    public function scents()
     {
-        return $this->belongsTo(ScentFamily::class);
+        return $this->belongsToMany(Scent::class);
+        
     }
 
 

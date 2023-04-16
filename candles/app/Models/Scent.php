@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ScentType extends Model
+class Scent extends Model
 {
     use HasFactory;
 
@@ -19,6 +19,6 @@ class ScentType extends Model
 
     public function scentFamilies()
     {
-        return $this->hasMany(ScentFamily::class);
+        return $this->belongsToMany(Product::class);
     }
 }
