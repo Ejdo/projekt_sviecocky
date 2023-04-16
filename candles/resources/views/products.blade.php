@@ -117,9 +117,9 @@
 
           @foreach ($products as $product)
             <div class="col-xl-4 col-sm-6 product-card">
-              <div class="product-image">
+              <div class="{{ asset($product->image_path) }}">
                 <a href="{{ route('product_detail',  $product->id) }}">
-                  <img src=$product->image_path />
+                  <img src=$product->photo_path />
                 </a>
                 <a href="#" class="add-to-cart">Add to Cart</a>
               </div>
