@@ -8,17 +8,19 @@
         <div class="col-md-6 me-5">
           <h2>Registered Customers</h2>
           <p>If you have an account, sign in with your email address.</p>
-          <form>
+          <form method="POST" action="{{ route('login.submit') }}">
+            @csrf
             <div class="form-group">
-              <label for="username">Email</label>
-              <input type="text" class="form-control" id="username" />
+              <label for="email">Email</label>
+              <input type="text" class="form-control" id="email" name="email"/>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" id="password" />
+              <input type="password" class="form-control" id="password" name="password" />
             </div>
-            <a href="{{ route('home') }}" class="btn-create-account">Login</a>
+            <button type="submit" class="btn-create-account">Login</button>
           </form>
+
         </div>
         <div class="col-md-5">
           <h2>New Customers</h2>

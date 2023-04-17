@@ -13,6 +13,7 @@
               type="text"
               class="form-control"
               id="firstName"
+              name="first_name"
               placeholder="Enter first name"
               required
             />
@@ -23,6 +24,7 @@
               type="text"
               class="form-control"
               id="lastName"
+              name="last_name"
               placeholder="Enter last name"
               required
             />
@@ -33,6 +35,7 @@
               type="email"
               class="form-control"
               id="email"
+              name="email"
               placeholder="Enter email"
               required
             />
@@ -43,6 +46,7 @@
               type="password"
               class="form-control"
               id="password"
+              name="password"
               placeholder="Enter password"
               required
             />
@@ -53,6 +57,7 @@
               type="password"
               class="form-control"
               id="repeatPassword"
+              name="repeat_password"
               placeholder="Repeat password"
               required
             />
