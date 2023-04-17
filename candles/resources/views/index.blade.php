@@ -159,7 +159,7 @@
                   <a href="{{ route('product_detail',  ['id' => $product->id] ) }}">
                     <img src="{{ asset($product->photo_path) }}" />
                   </a>
-                  <a href="{{ route('product_detail',  $product->id) }}" class="add-to-cart">Add to Cart</a>
+                  <a href="{{ route('cart.add', $product->id) }}" class="add-to-cart">Add to Cart</a>
                 </div>
                 <div class="row py-2">
                   <p class="col product-name">{{$product->name}}</p>
