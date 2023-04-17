@@ -12,8 +12,9 @@ class CartController extends Controller
         return view('cart');
     }
     
-    public function addToCart($id)
+    public function addToCart(Request $request)
     {
+        $id = $request->id; 
         $product = Product::find($id);
         
         if(!$product) {
@@ -21,7 +22,7 @@ class CartController extends Controller
         }
 
         $cart = session()->get('cart');
-
+        dd($cart);
         if(!$cart) {
             $cart = [
                 $id => [

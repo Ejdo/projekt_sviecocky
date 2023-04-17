@@ -26,12 +26,13 @@ Route::get('/products', 'App\Http\Controllers\ProductController@index') ->name('
 Route::get('/product', 'App\Http\Controllers\ProductController@show_product_detail') ->name('product_detail');
 
 
-Route::get('/cart', 'App\Http\Controllers\CartController@show_cart') ->name('cart.index');
-Route::get('/add-to-cart/{product}', 'App\Http\Controllers\CartController@addToCart')->name('cart.add');
+Route::get('/cart', 'App\Http\Controllers\CartController@show_cart') ->name('cart');
+Route::get('/add-to-cart', 'App\Http\Controllers\CartController@addToCart')->name('cart.add');
 
 
 
 Route::get('/checkout', 'App\Http\Controllers\CheckoutController@show_checkout') ->name('checkout');
 Route::get('/login', 'App\Http\Controllers\UserController@show_login') ->name('login');
-Route::get('/registration', 'App\Http\Controllers\UserController@show_reg') ->name('registration');
+Route::get('/register', 'App\Http\Controllers\UserController@showRegistration')->name('register');
+Route::post('/register', 'App\Http\Controllers\UserController@register')->name('register.submit');
 Route::get('/search', 'App\Http\Controllers\SearchController@show_search') ->name('search');

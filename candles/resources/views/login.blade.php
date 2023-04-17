@@ -26,7 +26,7 @@
             Creating an account has many benefits: check out faster, keep more
             than one address, track orders and more.
           </p>
-          <a href="{{ route('registration') }}" class="btn-create-account">Register</a>
+          <a href="{{ route('register') }}" class="btn-create-account">Register</a>
         </div>
       </div>
 </main>

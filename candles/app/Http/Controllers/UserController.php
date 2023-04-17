@@ -10,7 +10,12 @@ class UserController extends Controller
         return view('login');
     }
 
-    public function show_reg() {
+    public function showRegistration() {
         return view('registration');
+    }
+
+    public function register() {
+
+        return reddirect('/');
     }
 }

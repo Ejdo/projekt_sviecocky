@@ -5,7 +5,8 @@
   <main>
       <div class="form-container">
         <h1>Create Account</h1>
-        <form>
+        <form method="POST" action="{{ route('register') }}">
+        @csrf
           <div class="form-group">
             <label for="firstName">First Name:</label>
             <input
