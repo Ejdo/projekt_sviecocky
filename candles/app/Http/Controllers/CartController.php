@@ -8,9 +8,7 @@ use App\Models\Product;
 
 class CartController extends Controller
 {
-    public function show_cart() {
-        return view('cart');
-    }
+
     
     public function addToCart(Request $request)
     {
@@ -22,7 +20,7 @@ class CartController extends Controller
         }
 
         $cart = session()->get('cart');
-        dd($cart);
+
         if(!$cart) {
             $cart = [
                 $id => [
@@ -55,7 +53,7 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 
-    public function index()
+    public function show_cart()
     {
         $cart = session()->get('cart');
         $cartItems = [];
@@ -88,13 +86,24 @@ class CartController extends Controller
             }
         }
 
-        return view('cart.index', [
+        return view('cart', [
             'cartItems' => $cartItems,
             'totalPrice' => $totalPrice,
             'totalQuantity' => $totalQuantity,
         ]);
     }
-    
+
+    public function removeCartItem($id)
+{
+    $cart = session()->get('cart');
+
+    if(isset($cart[$id])) {
+        unset($cart[$id]);
+        session()->put('cart', $cart);
+    }
+
+    return redirect()->back()->with('success', 'Item has been removed');
+}
 
 
   

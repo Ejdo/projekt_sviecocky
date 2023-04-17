@@ -21,50 +21,30 @@
             </tr>
           </thead>
           <tbody>
+          @foreach ($cartItems as $item)
             <tr>
               <td>
                 <img
                   class="me-2"
-                  src="./images/candle3.jpg"
+                  src="{{ $item['photo_path'] }}"
                   width="112"
                   height="112"
                 />
-                APPLE & SWEET FIG
+                {{ $item['name'] }}
               </td>
-              <td>€28.99</td>
+              <td>{{ $item['price'] }} €</td>
               <td>
                 <input
                   class="text-center me-3"
                   type="num"
-                  value="1"
+                  value="{{ $item['quantity'] }}"
                   style="max-width: 3rem"
                 />
-                <a href="cart.html" class="fa fa-trash nav-icon"></a>
+                <a href="{{ route('cart.remove', ['id' => $item['id']]) }}" class="fa fa-trash nav-icon"></a>
               </td>
-              <td>€28.99</td>
+              <td>{{ $item['item_total_price'] }} €</td>
             </tr>
-            <tr>
-              <td>
-                <img
-                  class="me-2"
-                  src="./images/candle2.jpg"
-                  width="112"
-                  height="112"
-                />
-                SPICED ORANGE
-              </td>
-              <td>€28.99</td>
-              <td>
-                <input
-                  class="text-center me-3"
-                  type="num"
-                  value="1"
-                  style="max-width: 3rem"
-                />
-                <a href="cart.html" class="fa fa-trash nav-icon"></a>
-              </td>
-              <td>€28.99</td>
-            </tr>
+          @endforeach
           </tbody>
         </table>
       </div>
@@ -74,11 +54,11 @@
           <tbody>
             <tr>
               <td>Subtotal</td>
-              <td class="text-center">€57.98</td>
+              <td class="text-center">{{$totalPrice}} €</td>
             </tr>
             <tr>
               <td>Order total</td>
-              <td class="text-center">€57.98</td>
+              <td class="text-center">{{$totalPrice}} €</td>
             </tr>
           </tbody>
         </table>
