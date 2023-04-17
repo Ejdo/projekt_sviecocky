@@ -13,79 +13,87 @@ class CartController extends Controller
     }
     
     public function addToCart($id)
-{
-    $product = Product::find($id);
-    dd($product);
-    if(!$product) {
-        abort(404);
-    }
+    {
+        $product = Product::find($id);
+        
+        if(!$product) {
+            abort(404);
+        }
 
-    $cart = session()->get('cart');
+        $cart = session()->get('cart');
 
-    if(!$cart) {
-        $cart = [
-            $id => [
-                "name" => $product->name,
-                "quantity" => 1,
-                "price" => $product->price,
-                "image" => $product->image
-            ]
+        if(!$cart) {
+            $cart = [
+                $id => [
+                    "product_id" => $product->name,
+                    "name" => $product->name,
+                    "quantity" => 1,
+                    "price" => $product->price,
+                    "image" => $product->photo_path
+                ]
+            ];
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        }
+
+        if(isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        }
+
+        $cart[$id] = [
+            "product_id" => $product->name,
+            "name" => $product->name,
+            "quantity" => 1,
+            "price" => $product->price,
+            "image" => $product->photo_path
         ];
+
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 
-    if(isset($cart[$id])) {
-        $cart[$id]['quantity']++;
-        session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
-    }
-
-    $cart[$id] = [
-        "name" => $product->name,
-        "quantity" => 1,
-        "price" => $product->price,
-        "image" => $product->image
-    ];
-
-    session()->put('cart', $cart);
-    return redirect()->back()->with('success', 'Product added to cart successfully!');
-}
-
-    public function update(Request $request, $id)
+    public function index()
     {
-        $cartItem = CartItem::findOrFail($id);
-        $quantity = $request->quantity;
+        $cart = session()->get('cart');
+        $cartItems = [];
+        $totalPrice = 0;
+        $totalQuantity = 0;
 
-        if ($quantity == 0) {
-            $cartItem->delete();
-        } else {
-            $cartItem->quantity = $quantity;
-            $cartItem->save();
+        if ($cart) {
+            foreach ($cart as $id => $item) {
+                $product = Product::find($id);
+
+                if ($product) {
+                    $itemTotalPrice = $item['quantity'] * ($product->price - $product->discount);
+                    $totalPrice += $itemTotalPrice;
+                    $totalQuantity += $item['quantity'];
+
+                    $cartItems[] = [
+                        'id' => $id,
+                        'name' => $product->name,
+                        'quantity' => $item['quantity'],
+                        'price' => $product->price,
+                        'discount' => $product->discount,
+                        'item_total_price' => $itemTotalPrice,
+                        'photo_path' => $product->photo_path,
+                    ];
+                } else {
+                    // Remove invalid product from cart
+                    unset($cart[$id]);
+                    session()->put('cart', $cart);
+                }
+            }
         }
 
-        return redirect()->route('cart.index')->with('success', 'Cart updated successfully!');
+        return view('cart.index', [
+            'cartItems' => $cartItems,
+            'totalPrice' => $totalPrice,
+            'totalQuantity' => $totalQuantity,
+        ]);
     }
-
-    public function destroy($id)
-    {
-        $cartItem = CartItem::findOrFail($id);
-        $cartItem->delete();
-
-        return redirect()->route('cart.index')->with('success', 'Product removed from cart successfully!');
-    }
-
-    private function getTotal()
-    {
-        $cartItems = CartItem::where('cart_id', session()->get('cart_id'))->get();
-        $total = 0;
-
-        foreach ($cartItems as $cartItem) {
-            $total += $cartItem->quantity * $cartItem->price;
-        }
-
-        return $total;
-    }
+    
 
 
   

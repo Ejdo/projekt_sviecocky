@@ -28,7 +28,7 @@ Route::get('/products/{page?}', 'App\Http\Controllers\ProductController@show_all
 Route::get('/product/{id}', 'App\Http\Controllers\ProductController@show_product_detail') ->name('product_detail');
 
 
-Route::get('/cart', 'App\Http\Controllers\CartController@show_cart') ->name('cart');
+Route::get('/cart', 'App\Http\Controllers\CartController@show_cart') ->name('cart.index');
 Route::get('/add-to-cart/{product}', 'App\Http\Controllers\CartController@addToCart')->name('cart.add');
 
 
