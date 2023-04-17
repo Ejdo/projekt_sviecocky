@@ -12,29 +12,45 @@ class CartController extends Controller
         return view('cart');
     }
     
-    public function store(Request $request, string $id): RedirectResponse
-    {
-        return view('cart');
-        $product = Product::findOrFail($request->product_id);
-        
-        $cartItem = CartItem::where('cart_id', session()->get('cart_id'))
-            ->where('product_id', $product->id)
-            ->first();
-        if ($cartItem) {
-            $cartItem->increment('quantity');
-
-        } else {
-            
-            $cartItem = new CartItem();
-            $cartItem->cart_id = session()->get('cart_id');
-            $cartItem->product_id = $product->id;
-            $cartItem->quantity = 1;
-            $cartItem->price = $product->price;
-            $cartItem->save();
-        }
-        
-        return redirect()->route('/cart')->with('success', 'Product added to cart successfully!');
+    public function addToCart($id)
+{
+    $product = Product::find($id);
+    dd($product);
+    if(!$product) {
+        abort(404);
     }
+
+    $cart = session()->get('cart');
+
+    if(!$cart) {
+        $cart = [
+            $id => [
+                "name" => $product->name,
+                "quantity" => 1,
+                "price" => $product->price,
+                "image" => $product->image
+            ]
+        ];
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
+
+    if(isset($cart[$id])) {
+        $cart[$id]['quantity']++;
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
+
+    $cart[$id] = [
+        "name" => $product->name,
+        "quantity" => 1,
+        "price" => $product->price,
+        "image" => $product->image
+    ];
+
+    session()->put('cart', $cart);
+    return redirect()->back()->with('success', 'Product added to cart successfully!');
+}
 
     public function update(Request $request, $id)
     {

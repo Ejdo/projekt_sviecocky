@@ -29,7 +29,7 @@ Route::get('/product/{id}', 'App\Http\Controllers\ProductController@show_product
 
 
 Route::get('/cart', 'App\Http\Controllers\CartController@show_cart') ->name('cart');
-Route::get('/add-to-cart/{id}', 'App\Http\Controllers\CartController@addToCart')->name('add');
+Route::get('/add-to-cart/{product}', 'App\Http\Controllers\CartController@addToCart')->name('cart.add');
 
 
 
