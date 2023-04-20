@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use App\Http\Controllers\CartController;
 use App\Models\User;
 
 class UserController extends Controller
@@ -39,6 +39,8 @@ class UserController extends Controller
     
         if (Hash::check($password, $user->password)) {
             // password matches, log in the user
+            $cartController = new CartController();
+            $cartController->syncCart();
             Auth::login($user);
             return redirect('/');
         }
