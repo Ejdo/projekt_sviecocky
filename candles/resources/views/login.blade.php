@@ -2,6 +2,15 @@
 
 @section('content') 
   <main class="container-xl mt-5">
+      @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
       <h1>Customer Login</h1>
       <hr class="border-3 opacity-50" />
       <div class="row mt-5">

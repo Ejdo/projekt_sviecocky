@@ -34,6 +34,7 @@ Route::get('/cart/remove/{id}', 'App\Http\Controllers\CartController@removeCartI
 Route::get('/checkout', 'App\Http\Controllers\CheckoutController@show_checkout') ->name('checkout');
 Route::get('/login', 'App\Http\Controllers\UserController@show_login') ->name('login');
 Route::post('/login', 'App\Http\Controllers\UserController@login') ->name('login.submit');
+Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
 Route::get('/register', 'App\Http\Controllers\UserController@showRegistration')->name('register');
 Route::post('/register', 'App\Http\Controllers\UserController@register')->name('register.submit');
 Route::get('/search', 'App\Http\Controllers\SearchController@show_search') ->name('search');

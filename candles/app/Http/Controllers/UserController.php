@@ -12,7 +12,14 @@ use App\Models\User;
 class UserController extends Controller
 {
     public function show_login() {
-        return view('login');
+        if (Auth::check()) {
+            $user = auth()->user();
+            // user is logged in, return the logged-in view
+            return view('profile', ['user' => $user]);
+        } else {
+            // user is not logged in, return the login view
+            return view('login');
+        }
     }
 
     public function showRegistration() {
@@ -20,20 +27,55 @@ class UserController extends Controller
     }
 
     public function login(Request $request){
-        $credentials = $request->only('email', 'password');
+        $email = $request->input('email');
+        $password = $request->input('password');
     
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('home')->withSuccess('You have Successfully loggedin');
+        $user = User::where('email', $email)->first();
+    
+        if (!$user) {
+            // user not found with this email
+            return redirect()->back()->withErrors(['email' => 'Invalid Email']);
         }
-  
-        return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
+    
+        if (Hash::check($password, $user->password)) {
+            // password matches, log in the user
+            Auth::login($user);
+            return redirect('/');
+        }
+    
+        // password doesn't match
+        return redirect()->back()->withErrors(['email' => 'Invalid password']);
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 
     public function register(Request $request) {
+        $email = $request->input('email');
+        $existingUser = User::where('email', $email)->first();
+        if ($existingUser) {
+            // email already exists, return error response or redirect back with error message
+            return redirect()->back()->withErrors(['email' => 'Email already exists']);
+        }
+
+        $password = $request->input('password');
+        $passwordConfirmation = $request->input('repeat_password');
+    
+        if ($password !== $passwordConfirmation) {
+            // password and password confirmation do not match, return error response or redirect back with error message
+            return redirect()->back()->withErrors(['repeat_password' => 'Password and password confirmation do not match']);
+        }
+    
+
         $user = new User();
         $user->first_name = $request->input('first_name');
         $user->last_name = $request->input('last_name');
-        $user->email = $request->input('email');
+        $user->email = $email;
         $user->password = Hash::make($request->input('password'));
         $user->phone_number = '555-555';
         $user->isAdmin = false;
@@ -41,7 +83,6 @@ class UserController extends Controller
         $user->save();
 
         Auth::login($user);
-        dd($user);
         return redirect('/');
     }
 }
