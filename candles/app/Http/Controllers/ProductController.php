@@ -20,6 +20,8 @@ class ProductController extends Controller
 
         $productsQuery = Product::query();
 
+        $filter_by = 'Price: High to Low';
+
         if ($request->filled('category')) {
             $categoryId = Category::where('name', $request->category)->value('id');
             $productsQuery->where('category_id', $categoryId);
@@ -47,6 +49,7 @@ class ProductController extends Controller
         // sort by price
         if ($request->sort === 'price_asc') {
             $productsQuery->orderBy('price', 'asc');
+            $filter_by = 'Price: Low to High';
         } elseif ($request->sort === 'price_desc') {
             $productsQuery->orderBy('price', 'desc');
         }
@@ -54,7 +57,7 @@ class ProductController extends Controller
         // Get the filtered products
         $products = $productsQuery->paginate(10);
     
-        return view('products', compact('scents', 'types', 'brands', 'products'));
+        return view('products', compact('scents', 'types', 'brands', 'products', 'filter_by'));
     }
 
 
