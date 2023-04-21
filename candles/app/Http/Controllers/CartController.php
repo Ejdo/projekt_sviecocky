@@ -21,37 +21,66 @@ class CartController extends Controller
             abort(404);
         }
 
-        $cart = session()->get('cart');
+        if (Auth::check()){
+            $user = Auth::user(); 
+            $user_cart = $user->cartItems;
+            if (empty($user_cart) or !$user_cart->contains('product_id', $id)) {
 
-        if(!$cart) {
-            $cart = [
-                $id => [
-                    "product_id" => $product->name,
-                    "name" => $product->name,
-                    "quantity" => 1,
-                    "price" => $product->price,
-                    "image" => $product->photo_path
-                ]
+                // The product_id is not present in the user's cart, so add it
+                $user->cartItems()->create([
+                    'user_id' => $user->id,
+                    'product_id' => $id,
+                    'quantity' => 1,
+                    'price' => $product->price,
+                    'discount' => $product->discount,
+                    'created_at' => now(),
+                    'updated_at' => now(), 
+                ]);
+
+            }
+            else{
+                $existingCartItem = $user_cart->where('product_id', $id)->first();
+                $existingCartItem->quantity += 1;
+                $existingCartItem->save();
+            }
+
+        }
+
+
+        else
+        {
+            $cart = session()->get('cart');
+            if(!$cart) {
+                $cart = [
+                    $id => [
+                        "product_id" => $product->name,
+                        "name" => $product->name,
+                        "quantity" => 1,
+                        "price" => $product->price,
+                        "image" => $product->photo_path
+                    ]
+                ];
+                session()->put('cart', $cart);
+                return redirect()->back()->with('success', 'Product added to cart successfully!');
+            }
+
+            if(isset($cart[$id])) {
+                $cart[$id]['quantity']++;
+                session()->put('cart', $cart);
+                return redirect()->back()->with('success', 'Product added to cart successfully!');
+            }
+
+            $cart[$id] = [
+                "product_id" => $product->name,
+                "name" => $product->name,
+                "quantity" => 1,
+                "price" => $product->price,
+                "image" => $product->photo_path
             ];
+
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
-        }
+        } 
 
-        if(isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-            session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
-        }
-
-        $cart[$id] = [
-            "product_id" => $product->name,
-            "name" => $product->name,
-            "quantity" => 1,
-            "price" => $product->price,
-            "image" => $product->photo_path
-        ];
-
-        session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 
@@ -59,15 +88,17 @@ class CartController extends Controller
     {
         $cart = session()->get('cart');
         $cartItems = [];
+        $cart_items = [];
         $totalPrice = 0;
         $totalQuantity = 0;
         
         if (Auth::check()) {
             $user = Auth::user(); 
             $items = ($user->cartItems);
-            if ($items->isEmpty()) {
+
+    
+            if (!$items->isEmpty()) {
                 $totalQuantity = $user->cartItems->sum('quantity');
-                $cartItems = $user->cartItems;
                 
                 $totalPrice = 0;
                 foreach ($user->cartItems as $cart_item) {
@@ -75,16 +106,18 @@ class CartController extends Controller
                 }
 
                 foreach ($user->cartItems as $item) {
-                    $cartItems[] = [
+                    $cart_items[] = [
+                        'id' => $item->product->id,
                         'name' => $item->product->name,
                         'price' => $item->product->price,
+                        'quantity' => $item->quantity,
                         'item_total_price' => $item->quantity * ($item->product->price - $item->product->discount),
                         'photo_path' => $item->product->photo_path,
                     ];
                 }    
             }
             return view('cart', [
-                'cartItems' => $cartItems,
+                'cartItems' => $cart_items,
                 'totalPrice' => $totalPrice,
                 'totalQuantity' => $totalQuantity,
             ]);
@@ -123,13 +156,56 @@ class CartController extends Controller
         ]);
     }
 
-    public function removeCartItem($id)
+    public function update_cart_item(Request $request)
     {
-        $cart = session()->get('cart');
+        $id = $request->id;
+        $quantity = $request->input('quantity');
+        
+        if (Auth::check()) {
+            $user = Auth::user();
+            $cart_item = $user->cartItems()->where('product_id', $id)->first();
+            
+            if ($cart_item) {
+                $cart_item->quantity = $quantity;
+                $cart_item->save();
+                session()->forget('cart');
+                return redirect()->back()->with('success', 'Cart item updated successfully');
+            }
+        } else {
+            $cart = session()->get('cart');
+            
+            if (isset($cart[$id])) {
+                $cart[$id]['quantity'] = $quantity;
+                session()->put('cart', $cart);
+                return redirect()->back()->with('success', 'Cart item updated successfully');
+            }
+        }
+        
+        return redirect()->back()->with('error', 'Cart item not found');
+    }
 
-        if(isset($cart[$id])) {
-            unset($cart[$id]);
-            session()->put('cart', $cart);
+
+    public function removeCartItem(Request $request)
+    {
+        $id = $request->id;
+        if (Auth::check()) {
+            $user = Auth::user(); 
+            // Find the cart item for the specified user and product
+            $cart_item = CartItem::where('user_id', $user->id)->where('product_id', $id)->first();
+
+            // Delete the cart item if it exists
+            if ($cart_item) {
+                $cart_item->delete();
+            }
+        }
+
+        else{
+            $cart = session()->get('cart');
+
+            if(isset($cart[$id])) {
+                unset($cart[$id]);
+                session()->put('cart', $cart);
+            }
         }
 
         return redirect()->back()->with('success', 'Item has been removed');
@@ -143,6 +219,7 @@ class CartController extends Controller
             if (count($cartItems) > 0) {
                 $unlogged_cart = session()->get('cart');
                 $user_cart = $user->cartItems;
+            
                 foreach ($unlogged_cart as $product_id => $values) {
                     if (empty($user_cart) or !$user_cart->contains('product_id', $product_id)) {
                         // The product_id is not present in the user's cart, so add it
@@ -155,11 +232,14 @@ class CartController extends Controller
                             'quantity' => $values['quantity'],
                             'price' => $product->price,
                             'discount' => $product->discount,
+                            'created_at' => now(),
+                            'updated_at' => now(), 
                         ]);
+
                     }
                     else{
                         $existingCartItem = $user_cart->where('product_id', $product_id)->first();
-                        $existingCartItem->quantity += $quantity;
+                        $existingCartItem->quantity += $values['quantity'];
                         $existingCartItem->save();
                     }
                 }
@@ -168,7 +248,5 @@ class CartController extends Controller
                 }
         }
     }
-
-
-  
+    
 }

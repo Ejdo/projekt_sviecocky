@@ -28,7 +28,7 @@ Route::get('/product', 'App\Http\Controllers\ProductController@show_product_deta
 
 Route::get('/cart', 'App\Http\Controllers\CartController@show_cart') ->name('cart');
 Route::get('/add-to-cart', 'App\Http\Controllers\CartController@addToCart')->name('cart.add');
-Route::get('/cart/remove/{id}', 'App\Http\Controllers\CartController@removeCartItem')->name('cart.remove');
+Route::get('/cart/remove/', 'App\Http\Controllers\CartController@removeCartItem')->name('cart.remove');
 
 
 Route::get('/checkout', 'App\Http\Controllers\CheckoutController@show_checkout') ->name('checkout');

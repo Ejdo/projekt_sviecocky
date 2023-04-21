@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->float('price');
             $table->float('discount');
+            $table->timestamp('updated_at');
             $table->timestamp('created_at');
         });
 

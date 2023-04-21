@@ -2,6 +2,13 @@
 @extends('html_template')
 
 @section('content') 
+  @if(session()->has('success'))
+      <div class="alert alert-success">
+          {{ session()->get('success') }}
+      </div>
+  @endif
+
+
   <main class="container my-5">
     <section class="row">
       <div class="col">
@@ -34,13 +41,18 @@
               </td>
               <td>{{ $item['price'] }} €</td>
               <td>
+              <form method="POST" action="{{ route('cart.update', ['id' => $item['id']]) }}">
+                @csrf
+                @method('PUT')
                 <input
                   class="text-center me-3"
                   type="num"
                   value="{{ $item['quantity'] }}"
                   style="max-width: 3rem"
+                  onkeydown="updateCartItemQuantity(event)"
                 />
-                <a href="{{ route('cart.remove', ['id' => $item['id']]) }}" class="fa fa-trash nav-icon"></a>
+                </form>
+                <a href="{{ route('cart.remove', ['id' => $item['id']] ) }}" class="fa fa-trash nav-icon"></a>
               </td>
               <td>{{ $item['item_total_price'] }} €</td>
             </tr>
@@ -66,4 +78,35 @@
       </div>
     </section>
 </main>
+@endsection
+
+@section('scripts')
+<script>
+  function updateCartItemQuantity(event) {
+    if (event.keyCode === 13) { // Enter key
+      const input = event.target;
+      const cartItemId = input.dataset.cartItemId;
+      const newQuantity = input.value;
+      fetch(`/cart/${cartItemId}`, {
+        method: 'PUT',
+        headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ quantity: newQuantity })
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.reload(); // Reload the page to reflect the updated quantity
+        } else {
+          alert('Failed to update cart item quantity');
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        alert('Failed to update cart item quantity');
+      });
+    }
+  }
+</script> 
 @endsection

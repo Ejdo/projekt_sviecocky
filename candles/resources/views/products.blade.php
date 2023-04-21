@@ -1,6 +1,13 @@
 @extends('html_template')
 
 @section('content') 
+  @if(session()->has('success'))
+      <div class="alert alert-success">
+          {{ session()->get('success') }}
+      </div>
+  @endif
+
+
 
     <div class="row m-0" style="height: 300px; background-color: #e6ddcf">
       <div class="col text-center my-auto mx-5">
@@ -117,7 +124,7 @@
                 <a href="{{ route('product_detail', ['id'=>$product->id]) }}">
                   <img src="{{ asset($product->photo_path) }}" />
                 </a>
-                <a href="#" class="add-to-cart">Add to Cart</a>
+                <a href="{{ route('cart.add', ['id' => $product->id]) }}" class="add-to-cart">Add to Cart</a>
               </div>
               <div class="row py-2">
                 <p class="col product-name"> {{ $product->name}} </p>
@@ -139,7 +146,7 @@
 @endsection
 
 
-@section('content')
+@section('script')
   <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
