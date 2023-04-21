@@ -100,7 +100,7 @@
         <div class="btn-group">
           <h5 class="pe-2">Sort by:</h5>
           <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {{ $filter_by }}
+          {{ $filter_by }}
           </button>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="{{ route('products', ['sort' => 'price_desc']) }}">Price: High to Low</a>
@@ -136,7 +136,10 @@
 
       </section>
     </main>
+@endsection
 
+
+@section('scripts')
   <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
