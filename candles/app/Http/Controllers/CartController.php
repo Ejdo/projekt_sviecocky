@@ -64,9 +64,10 @@ class CartController extends Controller
         
         if (Auth::check()) {
             $user = Auth::user(); 
-            if ($user->cartItems->exists()) {
+            $items = ($user->cartItems);
+            if ($items->isEmpty()) {
                 $totalQuantity = $user->cartItems->sum('quantity');
-                $cartItems = $user->cartItems->get();
+                $cartItems = $user->cartItems;
                 
                 $totalPrice = 0;
                 foreach ($user->cartItems as $cart_item) {
@@ -136,21 +137,22 @@ class CartController extends Controller
     
     public function syncCart(){
         $user = Auth::user();
+    
         if (session()->has('cart')) {
             $cartItems = session()->get('cart');
             if (count($cartItems) > 0) {
                 $unlogged_cart = session()->get('cart');
-                $user_cart = $cartItems = $user->cartItems;
-                foreach ($unlogged_cart as $product_id => $quantity) {
-                    if (!$user_cart->contains('product_id', $product_id)) {
+                $user_cart = $user->cartItems;
+                foreach ($unlogged_cart as $product_id => $values) {
+                    if (empty($user_cart) or !$user_cart->contains('product_id', $product_id)) {
                         // The product_id is not present in the user's cart, so add it
                         $product = Product::find($product_id);
-                        $total_price = $quantity * $product->price;
+                        $total_price = $values['quantity'] * floatval($product->price);
 
                         $user->cartItems()->create([
                             'user_id' => $user->id,
                             'product_id' => $product_id,
-                            'quantity' => $quantity,
+                            'quantity' => $values['quantity'],
                             'price' => $product->price,
                             'discount' => $product->discount,
                         ]);

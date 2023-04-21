@@ -39,9 +39,9 @@ class UserController extends Controller
     
         if (Hash::check($password, $user->password)) {
             // password matches, log in the user
+            Auth::login($user);
             $cartController = new CartController();
             $cartController->syncCart();
-            Auth::login($user);
             return redirect('/');
         }
     
