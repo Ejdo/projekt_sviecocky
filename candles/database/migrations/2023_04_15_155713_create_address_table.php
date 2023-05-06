@@ -17,14 +17,15 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->bigInteger('country_id');
+            $table->bigInteger('country_id')->nullable();
             $table->foreign('country_id')->references('id')->on('countries');
             $table->string('first_name');
             $table->string('last_name', 50);
-            $table->string('address', 100);
-            $table->string('city', 100);
-            $table->string('postal_code', 5);
-            $table->string('phone_number', 15);
+            $table->string('address', 100)->nullable();
+            $table->string('city', 100)->nullable();
+            $table->string('postal_code', 5)->nullable();
+            $table->string('phone_number', 15)->nullable();
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();
