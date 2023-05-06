@@ -15,7 +15,7 @@
       @endif
       
       <div class="form-container">
-        <h1>Create Account</h1>
+        <h1>Change Password</h1>
         <form method="POST" action="{{ route('password.change.submit') }}">
             @csrf
             <div class="form-group">
