@@ -158,11 +158,10 @@ class CartController extends Controller
         ]);
     }
 
-    public function update_cart_item(Request $request)
+    public function updateCartItemQuantity(Request $request)
     {
         $id = $request->id;
         $quantity = $request->input('quantity');
-        
         if (Auth::check()) {
             $user = Auth::user();
             $cart_item = $user->cartItems()->where('product_id', $id)->first();
