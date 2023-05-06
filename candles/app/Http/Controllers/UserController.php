@@ -42,7 +42,12 @@ class UserController extends Controller
             Auth::login($user);
             $cartController = new CartController();
             $cartController->syncCart();
-            return redirect('/');
+            if ($user->isAdmin == 1){
+                return redirect('/admin');
+            }
+            else {
+                return redirect('/');
+            }
         }
     
         // password doesn't match
