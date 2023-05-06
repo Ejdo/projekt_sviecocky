@@ -28,6 +28,6 @@ class DatabaseSeeder extends Seeder
         (new ScentSeeder)->run();
         (new UserSeeder)->run();
         (new ScentFamilySeeder)->run();
-
+        (new CountrySeeder)->run();
     }
 }

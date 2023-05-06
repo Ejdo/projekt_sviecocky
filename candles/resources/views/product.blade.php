@@ -10,8 +10,12 @@
           <div class="col-md-6 my-4">
             <h1>{{$product->name}}</h1>
             <div class="mt-4 mb-2 product-price">
+            <?php if ($product->discount > 0): ?>
               <span class="text-decoration-line-through">{{number_format($product->price, 2)}} €</span>
-              <span>{{number_format($product->price, 2)}} €</span>
+              <span>{{number_format($product->price  * (1 - $product->discount/ 100), 2)}} €</span>
+            <?php else: ?>
+                <span>{{number_format($product->price, 2)}} €</span>
+            <?php endif; ?>
             </div>
             <div class="d-flex">
               <input
