@@ -33,6 +33,8 @@ Route::post('/cart/update/', 'App\Http\Controllers\CartController@updateCartItem
 
 
 Route::get('/checkout', 'App\Http\Controllers\CheckoutController@show_checkout') ->name('checkout');
+Route::post('/checkout/update/', 'App\Http\Controllers\CheckoutController@update_checkout') ->name('checkout.update');
+
 Route::get('/login', 'App\Http\Controllers\UserController@show_login') ->name('login');
 Route::post('/login', 'App\Http\Controllers\UserController@login') ->name('login.submit');
 Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');

@@ -1,15 +1,6 @@
 @extends('html_template')
 
 @section('content') 
-@if ($errors->any())
-          <div class="alert alert-danger">
-              <ul>
-                  @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
-                  @endforeach
-              </ul>
-          </div>
-      @endif
 
   <main class="container my-5">
     <section class="row">
@@ -21,15 +12,16 @@
 
     <section class="row">
       <div class="col-md-8">
-        <form method="POST" action="{{ route('checkout.update') }}">
+        <form action="#">
+
         @csrf
-        <input type="hidden" name="cart" value="{{ json_encode(session()->get('cart')) }}">
           <div class="checkbox-form md-8">
             <h3>Contact information</h3>
             <div class="col-md-12">
               <p>
                 <label>Email <span class="required">*</span></label>
-                <input type="email" name="email" class="form-control" value = "{{$mail}}" required/>
+
+                <input type="text" name="email" class="form-control" value = "{{$email}}" required/>
               </p>
             </div>
           </div>
@@ -89,11 +81,9 @@
                   type="radio"
                   name="shipping"
                   id="standart"
-                  value="2.49"
-                  required
                 />
                 <label class="form-check-label" for="standart">
-                  Standart (2.49€) - 7 days
+                  Standart
                 </label>
               </p>
             </div>
@@ -104,9 +94,8 @@
                   type="radio"
                   name="shipping"
                   id="UPS"
-                  value="3.49"
                 />
-                <label class="form-check-label" for="UPS"> UPS (3.49€) - 5 days </label>
+                <label class="form-check-label" for="UPS"> UPS </label>
               </p>
             </div>
             <div class="col-md-12">
@@ -116,10 +105,9 @@
                   type="radio"
                   name="shipping"
                   id="UPS3D"
-                  value="5.99"
                 />
                 <label class="form-check-label" for="UPS3D">
-                  UPS Three-Day Select (5.99€) - 3 days
+                  UPS Three-Day Select
                 </label>
               </p>
             </div>
@@ -130,10 +118,9 @@
                   type="radio"
                   name="shipping"
                   id="UPSAir"
-                  value="6.99"
                 />
                 <label class="form-check-label" for="UPSAir">
-                  UPS Next Day Air (6.99€) -  2 days
+                  UPS Next Day Air
                 </label>
               </p>
             </div>
@@ -150,8 +137,6 @@
                   type="radio"
                   name="payment"
                   id="card"
-                  value="card"
-                  required
                 />
                 <label class="form-check-label" for="card"> Credit card </label>
               </p>
@@ -163,18 +148,15 @@
                   type="radio"
                   name="payment"
                   id="PayPal"
-                  value="PayPal"
                 />
                 <label class="form-check-label" for="PayPal"> PayPal </label>
               </p>
             </div>
           </div>
-          <button type="submit" class="btn main-button">
-            Check Information
-          </button>
+
         </form>
       </div>
-      
+
       <div class="col-md-4 text-center">
         <h2>Order Summary</h2>
         <table class="table">
@@ -185,18 +167,19 @@
             </tr>
             <tr>
               <td>Tax</td>
-              <td class="text-center">{{$tax}} €</td>
+              <td class="text-center">{{$tax}}€</td>
             </tr>
             <tr>
               <td>Shipping</td>
-              <td class="text-center">0€</td>
+              <td class="text-center">{{$shipping}}€</td>
             </tr>
             <tr>
               <td>Order total</td>
-              <td class="text-center">{{$totalPrice + $tax}}€</td>
+              <td class="text-center">{{$totalPrice + $tax + $shipping}}€</td>
             </tr>
           </tbody>
         </table>
+        <a href="{{ route('home') }}" class="btn main-button">Place Order</a>
       </div>
     </section>
   </main>
