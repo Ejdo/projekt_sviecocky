@@ -58,7 +58,7 @@
                 />
                 <div>
                   <a href="{{ route('cart.remove', ['id' => $item['id']] ) }}" class="fa fa-trash nav-icon"></a>
-                  <a href="{{ route('cart.update', ['id' => $item['id']] ) }}" class="fa fa-refresh nav-icon"></a>
+                  <button type="submit" class="btn btn-link text-black p-0"><i class="fas fa-refresh"> </i></button>
                 </div>  
               </form>
                 
