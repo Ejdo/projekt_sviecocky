@@ -69,11 +69,11 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="first_name" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="first_name" name="first_name" value="{{ $user->first_name }}">
+                    <input type="text" class="form-control" id="a_first_name" name="a_first_name" value="{{  optional($user->address)->first_name }}">
                 </div>
                 <div class="col-md-6">
                     <label for="last_name" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="last_name" name="last_name" value="{{ $user->last_name }}">
+                    <input type="text" class="form-control" id="a_last_name" name="a_last_name" value="{{  optional($user->address)->last_name }}">
                 </div>
             </div>
             <div class="row mb-3">

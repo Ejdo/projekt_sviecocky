@@ -151,6 +151,14 @@ class UserController extends Controller
 
      
         // Update the address instance
+        if ($request->filled('a_first_name')) {
+            $address->first_name = $request->input('a_first_name');
+        }
+
+        if ($request->filled('a_last_name')) {
+            $address->last_name = $request->input('a_last_name');
+        }
+
         if ($request->filled('street_address')) {
             $address->address = $request->input('street_address');
         }
