@@ -18,7 +18,7 @@
     </section>
     <section class="row">
       <div class="col-md-8">
-        <table class="table table-borderless">
+        <table class="table table-borderless table-responsive">
           <thead>
             <tr>
               <th>Product</th>
@@ -30,29 +30,39 @@
           <tbody>
           @foreach ($cartItems as $item)
             <tr>
-              <td>
+              <td class="row">
+                <div class="col-sm-6" >
                 <img
-                  class="me-2"
+                  
                   src="{{ $item['photo_path'] }}"
                   width="112"
                   height="112"
                 />
-                {{ $item['name'] }}
+                </div>   
+                <section class="col-sm-6">
+                  <p >{{ $item['name'] }}</p>
+                </section>
               </td>
-              <td>{{ $item['price'] }} €</td>
-              <td>
+              
+              <td >{{ $item['price'] }} €</td>
+              <td >
               <form method="POST" action="{{ route('cart.update', ['id' => $item['id']]) }}">
                 @csrf
-                @method('PUT')
                 <input
                   class="text-center me-3"
-                  type="num"
+                  min= 1
+                  name="quantity"
+                  type="number"
                   value="{{ $item['quantity'] }}"
                   style="max-width: 3rem"
                   onkeydown="updateCartItemQuantity(event)"
                 />
-                </form>
-                <a href="{{ route('cart.remove', ['id' => $item['id']] ) }}" class="fa fa-trash nav-icon"></a>
+                <div>
+                  <a href="{{ route('cart.remove', ['id' => $item['id']] ) }}" class="fa fa-trash nav-icon"></a>
+                  <button type="submit" class="btn btn-link text-black p-0"><i class="fas fa-refresh"> </i></button>
+                </div>  
+              </form>
+                
               </td>
               <td>{{ $item['item_total_price'] }} €</td>
             </tr>
