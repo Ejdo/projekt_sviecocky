@@ -162,8 +162,6 @@ class CartController extends Controller
     {
         $id = $request->id;
         $quantity = $request->input('quantity');
-        dd($request);
-        
         if (Auth::check()) {
             $user = Auth::user();
             $cart_item = $user->cartItems()->where('product_id', $id)->first();

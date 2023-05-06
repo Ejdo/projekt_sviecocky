@@ -48,10 +48,11 @@
               <td >
               <form method="POST" action="{{ route('cart.update', ['id' => $item['id']]) }}">
                 @csrf
-                @method('PUT')
                 <input
                   class="text-center me-3"
-                  type="num"
+                  min= 1
+                  name="quantity"
+                  type="number"
                   value="{{ $item['quantity'] }}"
                   style="max-width: 3rem"
                   onkeydown="updateCartItemQuantity(event)"
