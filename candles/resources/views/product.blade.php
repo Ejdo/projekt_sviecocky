@@ -20,7 +20,10 @@
                 value="1"
                 style="max-width: 3rem"
               />
-              <button class="btn main-button" type="button">Add to cart</button>
+              <form action="{{ route('cart.add', ['id' => $product->id]) }}" method="POST">
+                @csrf
+                <button class="btn main-button" type="submit">Add to Cart</button>
+              </form>
             </div>
           </div>
         </div>

@@ -15,6 +15,8 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
         $id = $request->id; 
+        $quantity = $request->quantity;
+        $quantity = $quantity ?? 1;
         $product = Product::find($id);
         
         if(!$product) {
@@ -30,7 +32,7 @@ class CartController extends Controller
                 $user->cartItems()->create([
                     'user_id' => $user->id,
                     'product_id' => $id,
-                    'quantity' => 1,
+                    'quantity' => $quantity,
                     'price' => $product->price,
                     'discount' => $product->discount,
                     'created_at' => now(),
@@ -55,7 +57,7 @@ class CartController extends Controller
                     $id => [
                         "product_id" => $product->name,
                         "name" => $product->name,
-                        "quantity" => 1,
+                        "quantity" => $quantity,
                         "price" => $product->price,
                         "image" => $product->photo_path
                     ]
@@ -73,7 +75,7 @@ class CartController extends Controller
             $cart[$id] = [
                 "product_id" => $product->name,
                 "name" => $product->name,
-                "quantity" => 1,
+                "quantity" => $quantity,
                 "price" => $product->price,
                 "image" => $product->photo_path
             ];
