@@ -18,7 +18,7 @@
     </section>
     <section class="row">
       <div class="col-md-8">
-        <table class="table table-borderless">
+        <table class="table table-borderless table-responsive">
           <thead>
             <tr>
               <th>Product</th>
@@ -30,15 +30,20 @@
           <tbody>
           @foreach ($cartItems as $item)
             <tr>
-              <td>
+              <td class="row-sm-4 row-md-4 row-lg-8">
+                <div class="col-sm-8 col-md-4 col-lg-5" >
                 <img
-                  class="me-2"
+                  
                   src="{{ $item['photo_path'] }}"
                   width="112"
                   height="112"
                 />
-                {{ $item['name'] }}
+                </div>   
+                <section class="col-sm-4 col-md-4 col-lg-6">
+                  <p >{{ $item['name'] }}</p>
+                </section>
               </td>
+              
               <td>{{ $item['price'] }} €</td>
               <td>
               <form method="POST" action="{{ route('cart.update', ['id' => $item['id']]) }}">
@@ -51,10 +56,12 @@
                   style="max-width: 3rem"
                   onkeydown="updateCartItemQuantity(event)"
                 />
-                </form>
                 <a href="{{ route('cart.remove', ['id' => $item['id']] ) }}" class="fa fa-trash nav-icon"></a>
+                <a href="{{ route('cart.update', ['id' => $item['id']] ) }}" class="fa fa-refresh nav-icon"></a>
+                </form>
+                
               </td>
-              <td>{{ $item['item_total_price'] }} €</td>
+              <td class="col-sm-3">{{ $item['item_total_price'] }} €</td>
             </tr>
           @endforeach
           </tbody>
