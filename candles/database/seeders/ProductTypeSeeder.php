@@ -15,8 +15,8 @@ class ProductTypeSeeder extends Seeder
     {
         // Type
         ProductType::create([
-            'name' => 'Aroma',
-            'description' => 'Medium Aromatic candle',
+            'name' => 'Big',
+            'description' => 'Big Candle',
         ]);
     }
 }

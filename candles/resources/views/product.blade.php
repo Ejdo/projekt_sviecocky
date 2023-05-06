@@ -32,7 +32,8 @@
           </div>
         </div>
       </section>
-
+      
+      @if ($product->category->name == 'Candles')
       <section class="container my-5">
         <section class="container marketing">
           <div class="row">
@@ -47,6 +48,7 @@
           </div>
         </section>
       </section>
+    @endif
 
       <section class="container my-5">
         <div class="row align-items-center gx-5">
@@ -56,12 +58,24 @@
               {{ $product->description }}
             </p>
           </article>
-          <article class="col-lg-6 gy-5">
-            <h4>Burn Hours</h4>
-            <p>{{ $product->burn_hours }}</p>
-            <h4>Ingredients</h4>
-            <p>{{$product->ingredients}}</p>
-          </article>
+          @if ($product->category->name == 'Lanterns')
+            <article class="col-lg-6 gy-5">
+                <h4>Materials</h4>
+                <p>{{$product->ingredients}}</p>
+            </article>
+          @else
+              <article class="col-lg-6 gy-5">
+                  @if ($product->category->name == 'Candles' or $product->category->name == 'Incense Sticks' )
+                    <h4>Burn Hours</h4>
+                  @else
+                    <h4>Fragrance longevity in hours</h4>
+                  @endif
+                    <p>{{ $product->burn_hours }}</p>
+                  <h4>Ingredients</h4>
+                  <p>{{$product->ingredients}}</p>
+              </article>
+          @endif
+
         </div>
       </section>
 
@@ -79,7 +93,7 @@
               </div>
               <div class="row py-2">
                 <p class="col product-name">{{$product->name}}</p>
-                <p class="col price">{{number_format($product->price, 2)}} €</p>
+                <p class="col price">{{number_format($product->price  * (1 - $product->discount/ 100), 2)}} €</p>
               </div>
             </div>
           @endforeach

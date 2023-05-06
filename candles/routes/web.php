@@ -38,7 +38,8 @@ Route::post('/login', 'App\Http\Controllers\UserController@login') ->name('login
 Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
 Route::get('/register', 'App\Http\Controllers\UserController@showRegistration')->name('register');
 Route::post('/register', 'App\Http\Controllers\UserController@register')->name('register.submit');
-Route::get('/search', 'App\Http\Controllers\SearchController@show_search') ->name('search');
+Route::get('/search', 'App\Http\Controllers\ProductController@show_search') ->name('search');
+Route::get('/search_results', 'App\Http\Controllers\ProductController@search') ->name('search.submit');
 
 Route::get('/change_password', 'App\Http\Controllers\UserController@showChangePass')->name('password.change');
 Route::post('/change_password', 'App\Http\Controllers\UserController@ChangePassword')->name('password.change.submit');

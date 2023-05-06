@@ -17,6 +17,7 @@ class ProductController extends Controller
         $scents = Scent::all();
         $types = ProductType::all();
         $brands = Brand::all();
+        $categ = null;
 
         $productsQuery = Product::query();
 
@@ -25,6 +26,7 @@ class ProductController extends Controller
         if ($request->filled('category')) {
             $categoryId = Category::where('name', $request->category)->value('id');
             $productsQuery->where('category_id', $categoryId);
+            $categ = Category::where('name', $request->category)->first();
         }
 
         if ($request->filled('brand')) {
@@ -38,8 +40,10 @@ class ProductController extends Controller
         }
 
         if ($request->filled('scent')) {
-            $categoryId = Category::where('id', $request->category)->value('id');
-            $productsQuery->where('category_id', $categoryId);
+            $scentId = $request->scent;
+            $productsQuery->whereHas('scents', function ($query) use ($scentId) {
+                $query->where('scents.id', $scentId);
+            });
         }
 
         if ($request->filled('color')) {
@@ -55,9 +59,8 @@ class ProductController extends Controller
         }
     
         // Get the filtered products
-        $products = $productsQuery->paginate(10);
-    
-        return view('products', compact('scents', 'types', 'brands', 'products', 'filter_by'));
+        $products = $productsQuery->paginate(6);
+        return view('products', compact('categ', 'scents', 'types', 'brands', 'products', 'filter_by'));
     }
 
 
@@ -65,6 +68,29 @@ class ProductController extends Controller
         $product = Product::find($request->id);
         $trending = Product::where('trending', true)->take(4)->get();
         return view('product', ['product' => $product, 'trending'=> $trending]);
+    }
+
+    public function show_search() {
+        return view('search');
+    }
+
+    public function search(Request $request) {
+        $search = $request->input('search');
+
+
+        
+        $products = Product::where('name', 'LIKE', "%$search%")
+            ->orWhere('description', 'LIKE', "%$search%")
+            ->orWhereHas('category', function($query) use ($search) {
+                $query->where('name', 'LIKE', "%$search%");
+            })
+            ->orWhereHas('scents', function ($query) use ($search) {
+                $query->where('scents.name','LIKE', "%$search%");
+            })
+            ->get();
+
+    
+        return view('search', compact('products'));
     }
 }
 
