@@ -30,8 +30,8 @@
           <tbody>
           @foreach ($cartItems as $item)
             <tr>
-              <td class="row-sm-4 row-md-4 row-lg-8">
-                <div class="col-sm-8 col-md-4 col-lg-5" >
+              <td class="row">
+                <div class="col-sm-6" >
                 <img
                   
                   src="{{ $item['photo_path'] }}"
@@ -39,13 +39,13 @@
                   height="112"
                 />
                 </div>   
-                <section class="col-sm-4 col-md-4 col-lg-6">
+                <section class="col-sm-6">
                   <p >{{ $item['name'] }}</p>
                 </section>
               </td>
               
-              <td>{{ $item['price'] }} €</td>
-              <td>
+              <td >{{ $item['price'] }} €</td>
+              <td >
               <form method="POST" action="{{ route('cart.update', ['id' => $item['id']]) }}">
                 @csrf
                 @method('PUT')
@@ -56,12 +56,14 @@
                   style="max-width: 3rem"
                   onkeydown="updateCartItemQuantity(event)"
                 />
-                <a href="{{ route('cart.remove', ['id' => $item['id']] ) }}" class="fa fa-trash nav-icon"></a>
-                <a href="{{ route('cart.update', ['id' => $item['id']] ) }}" class="fa fa-refresh nav-icon"></a>
-                </form>
+                <div>
+                  <a href="{{ route('cart.remove', ['id' => $item['id']] ) }}" class="fa fa-trash nav-icon"></a>
+                  <a href="{{ route('cart.update', ['id' => $item['id']] ) }}" class="fa fa-refresh nav-icon"></a>
+                </div>  
+              </form>
                 
               </td>
-              <td class="col-sm-3">{{ $item['item_total_price'] }} €</td>
+              <td>{{ $item['item_total_price'] }} €</td>
             </tr>
           @endforeach
           </tbody>
