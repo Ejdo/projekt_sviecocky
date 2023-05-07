@@ -8,19 +8,18 @@
   @endif
 
 
+  @if(isset($categ))
+      <div class="row m-0" style="height: 300px; background-color: #e6ddcf">
+          <div class="col text-center my-auto mx-5">
+              <h1>{{ $categ->name }}</h1>
+              <p>{{ $categ->description }}</p>
+          </div>
+          <div class="col d-flex justify-content-end p-0 d-none d-md-flex">
+              <img src="{{ asset($categ->photo_path) }}" />
+          </div>
+      </div>
+  @endif
 
-    <div class="row m-0" style="height: 300px; background-color: #e6ddcf">
-      <div class="col text-center my-auto mx-5">
-        <h1>Candles</h1>
-        <p>
-          Choose from over 2000 designer and luxury scented candles for every
-          setting and olfactory taste.
-        </p>
-      </div>
-      <div class="col d-flex justify-content-end p-0 d-none d-md-flex">
-        <img src="../images/candles_header.png" />
-      </div>
-    </div>
 
     <main class="container-xl d-flex p-5">
       <aside class="col mx-3 d-none d-sm-flex">
@@ -39,7 +38,7 @@
               <div class="collapse" id="brand-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                  @foreach ($brands as $brand)
-                    <li><a href="{{ route('products', ['brand' => $brand->id]) }}" class="link-dark rounded">{{ $brand->name }}</a></li>
+                    <li><a href="{{ route('products', ['brand' => $brand->id, 'category' => $categ->name]) }}" class="link-dark rounded">{{ $brand->name }}</a></li>
                 @endforeach
                 </ul>
               </div>
@@ -55,7 +54,7 @@
               <div class="collapse" id="product-type-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                   @foreach ($types as $type)
-                    <li><a href="{{ route('products', ['type' => $type->id]) }}" class="link-dark rounded">{{ $type->name }}</a></li>
+                    <li><a href="{{ route('products', ['type' => $type->id,  'category' => $categ->name]) }}" class="link-dark rounded">{{ $type->name }}</a></li>
                   @endforeach
                 </ul>
               </div>
@@ -71,7 +70,7 @@
               <div class="collapse" id="scent-family-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                   @foreach ($scents as $scent)
-                    <li><a href="{{ route('products', ['scent' => $scent->id]) }}" class="link-dark rounded">{{ $scent->name }}</a></li>
+                    <li><a href="{{ route('products', ['scent' => $scent->id, 'category' => $categ->name]) }}" class="link-dark rounded">{{ $scent->name }}</a></li>
                   @endforeach
                 </ul>
               </div>
@@ -86,15 +85,15 @@
               </button>
               <div class="collapse" id="color-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li><a href=" {{ route('products', ['color' => 'white']) }}" class="link-dark rounded">White</a></li>
-                  <li><a href=" {{ route('products', ['color' => 'yellow']) }}" class="link-dark rounded">Yellow</a></li>
-                  <li><a href=" {{ route('products', ['color' => 'orange']) }}" class="link-dark rounded">Orange</a></li>
-                  <li><a href=" {{ route('products', ['color' => 'red']) }}" class="link-dark rounded">Red</a></li>
-                  <li><a href=" {{ route('products', ['color' => 'pink']) }}" class="link-dark rounded">Pink</a></li>
-                  <li><a href=" {{ route('products', ['color' => 'purple']) }}" class="link-dark rounded">Purple</a></li>
-                  <li><a href=" {{ route('products', ['color' => 'blue']) }}" class="link-dark rounded">Blue</a></li>
-                  <li><a href=" {{ route('products', ['color' => 'green']) }}" class="link-dark rounded">Green</a></li>
-                  <li><a href=" {{ route('products', ['color' => 'brown']) }}" class="link-dark rounded">Brown</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'white', 'category' => $categ->name]) }}" class="link-dark rounded">White</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'yellow', 'category' => $categ->name]) }}" class="link-dark rounded">Yellow</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'orange', 'category' => $categ->name]) }}" class="link-dark rounded">Orange</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'red', 'category' => $categ->name]) }}" class="link-dark rounded">Red</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'pink', 'category' => $categ->name]) }}" class="link-dark rounded">Pink</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'purple', 'category' => $categ->name]) }}" class="link-dark rounded">Purple</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'blue', 'category' => $categ->name]) }}" class="link-dark rounded">Blue</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'green', 'category' => $categ->name]) }}" class="link-dark rounded">Green</a></li>
+                  <li><a href=" {{ route('products', ['color' => 'brown', 'category' => $categ->name]) }}" class="link-dark rounded">Brown</a></li>
                 </ul>
               </div>
             </li>
@@ -110,8 +109,8 @@
           {{ $filter_by }}
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="{{ route('products', ['sort' => 'price_desc']) }}">Price: High to Low</a>
-            <a class="dropdown-item" href="{{ route('products', ['sort' => 'price_asc']) }}">Price: Low to High</a>
+            <a class="dropdown-item" href="{{ route('products', ['sort' => 'price_desc', 'category' => $categ->name]) }}">Price: High to Low</a>
+            <a class="dropdown-item" href="{{ route('products', ['sort' => 'price_asc', 'category' => $categ->name]) }}">Price: Low to High</a>
           </div>
         </div>
       </div>
@@ -128,7 +127,7 @@
               </div>
               <div class="row py-2">
                 <p class="col product-name"> {{ $product->name}} </p>
-                <p class="col price"> {{number_format($product->price, 2)}} </p>
+                <p class="col price"> {{number_format($product->price  * (1 - $product->discount/ 100), 2)}} € </p>
               </div>
             </div>
           @endforeach
@@ -138,7 +137,7 @@
         <hr class="border-3 opacity-50" />
 
         <nav class="d-flex justify-content-center">
-          {!! $products->links() !!}
+          {!! $products->withQueryString()->appends(['category' => $categ->name])->links() !!}
         </nav>
 
       </section>
