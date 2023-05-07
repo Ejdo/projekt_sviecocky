@@ -10,14 +10,16 @@ use App\Http\Controllers\CartController;
 use App\Models\User;
 use App\Models\Address;
 use App\Models\Country;
+use App\Models\Order;
 
 class UserController extends Controller
 {
     public function show_login() {
         if (Auth::check()) {
             $user = auth()->user();
+            $orders = Order::where('user_id', $user->id)->get();
             // user is logged in, return the logged-in view
-            return view('profile', ['user' => $user]);
+            return view('profile', ['user' => $user, 'orders' => $orders]);
         } else {
             // user is not logged in, return the login view
             return view('login');
