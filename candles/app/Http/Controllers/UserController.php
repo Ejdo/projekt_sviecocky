@@ -96,7 +96,7 @@ class UserController extends Controller
         $user->last_name = $request->input('last_name');
         $user->email = $email;
         $user->password = Hash::make($request->input('password'));
-        $user->phone_number = '555-555';
+        $user->phone_number = '';
         $user->role = 'client';
         $user->registered_at = now();
         $user->save();

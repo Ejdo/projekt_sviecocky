@@ -62,12 +62,12 @@ class ProductController extends Controller
             $filters["color"] = $request->color;
         }
 
-        // sort by price
         if ($request->sort === 'price_asc') {
-            $productsQuery->orderBy('price', 'asc');
+            $productsQuery->orderByRaw('price - (price * discount / 100) asc');
             $filter_by = 'Price: Low to High';
         } elseif ($request->sort === 'price_desc') {
-            $productsQuery->orderBy('price', 'desc');
+            $productsQuery->orderByRaw('price - (price * discount / 100) desc');
+            $filter_by = 'Price: High to Low';
         }
     
         // Get the filtered products
@@ -119,7 +119,7 @@ class ProductController extends Controller
             ->orWhereHas('scents', function ($query) use ($search) {
                 $query->where('scents.name','LIKE', "%$search%");
             })
-            ->get();
+            ->paginate(8);
 
     
         return view('search', compact('products'));

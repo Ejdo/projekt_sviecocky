@@ -37,6 +37,12 @@
             @endforeach
 
             </div>
+
+            <hr class="border-3 opacity-50" />
+
+            <nav class="d-flex justify-content-center">
+              {!! $products->links() !!}
+            </nav>
           @endif
       </section>
   </main>

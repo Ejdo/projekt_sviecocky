@@ -29,7 +29,7 @@ class ProductSeeder extends Seeder
             'type_id' => 1,
             'color' => "brown",
             'photo_path' => "images/candle5.jpg",
-            'photo_path2' => "images/candle5.jpg",
+            'photo_path2' => "images/mocha2.jpg",
             'trending' => false,
         ]);
 
@@ -47,7 +47,7 @@ class ProductSeeder extends Seeder
             'type_id' => 1,
             'color' => "white",
             'photo_path' => 'images/candle3.jpg',
-            'photo_path2' => 'images/candle3.jpg',
+            'photo_path2' => 'images/wcandle.jpg',
             'trending' => true,
         ]);
 
@@ -65,7 +65,7 @@ class ProductSeeder extends Seeder
             'type_id' => 1,
             'color' => "white",
             'photo_path' => "images/candle2.jpg",
-            'photo_path2' => "images/candle2.jpg",
+            'photo_path2' => "images/wcandle.jpg",
             'trending' => true,
         ]);
 
@@ -83,7 +83,7 @@ class ProductSeeder extends Seeder
             'type_id' => 1,
             'color' => "white",
             'photo_path' => "images/candle1.jpg",
-            'photo_path2' => "images/candle1.jpg",
+            'photo_path2' => "images/wcandle.jpg",
             'trending' => true,
         ]);
 
@@ -102,7 +102,7 @@ class ProductSeeder extends Seeder
             'type_id' => 1,
             'color' => "white",
             'photo_path' => "images/candle4.jpg",
-            'photo_path2' => "images/candle4.jpg",
+            'photo_path2' => "images/mocha2.jpg",
             'trending' => true,
         ]);
 
@@ -120,7 +120,7 @@ class ProductSeeder extends Seeder
             'type_id' => 1,
             'color' => "yellow",
             'photo_path' => "images/candle6.jpg",
-            'photo_path2' => "images/candle6.jpg",
+            'photo_path2' => "images/honey.jpg",
             'trending' => true,
         ]);
 
@@ -139,7 +139,7 @@ class ProductSeeder extends Seeder
             'type_id' => 1,
             'color' => "yellow",
             'photo_path' => "images/candle7.jpg",
-            'photo_path2' => "images/candle7.jpg",
+            'photo_path2' => "images/candle72.jpg",
             'trending' => false,
         ]);
 
@@ -157,7 +157,7 @@ class ProductSeeder extends Seeder
             'type_id' => 1,
             'color' => "brown",
             'photo_path' => "images/lantern.jpg",
-            'photo_path2' => "images/lantern.jpg",
+            'photo_path2' => "images/lantern2.jpg",
             'trending' => false,
         ]);
 
@@ -175,7 +175,7 @@ class ProductSeeder extends Seeder
             'type_id' => 1,
             'color' => "brown",
             'photo_path' => "images/stick.jpg",
-            'photo_path2' => "images/stick.jpg",
+            'photo_path2' => "images/stick2.jpg",
             'trending' => false,
         ]);
 
@@ -193,7 +193,7 @@ class ProductSeeder extends Seeder
             'type_id' => 1,
             'color' => "brown",
             'photo_path' => "images/oil.jpg",
-            'photo_path2' => "images/oil.jpg",
+            'photo_path2' => "images/oil2.jpg",
             'trending' => false,
         ]);
 
@@ -211,7 +211,7 @@ class ProductSeeder extends Seeder
             'type_id' => 1,
             'color' => "brown",
             'photo_path' => "images/diffuserp.jpg",
-            'photo_path2' => "images/diffuserp.jpg",
+            'photo_path2' => "images/diffuser2.jpg",
             'trending' => false,
         ]);
     }

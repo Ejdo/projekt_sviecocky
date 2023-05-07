@@ -55,6 +55,7 @@
               </form>
             </div>
             <p {{$class}} >Product in basket</p>
+            <p> Remove </p>
           </div>
         </div>
       </section>

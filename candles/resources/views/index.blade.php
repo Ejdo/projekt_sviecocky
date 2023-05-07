@@ -52,7 +52,7 @@
                From the sweet and spicy aroma of cinnamon to the warm and musky scent of sandalwood, 
                these candles are perfect for creating a cozy and intimate atmosphere.
               </p>
-              <p><a class="btn btn-lg btn-primary" href="{{ route('products') }}">Shop now</a></p>
+              <p><a class="btn btn-lg btn-primary" href="{{ route('products', ['category' => 'Candles']) }}">Shop now</a></p>
             </div>
           </div>
         </div>
@@ -77,7 +77,7 @@
               and soothing scents. Each candle is formulated to promote relaxation and reduce 
               stress, making them perfect for unwinding after a long day.
               </p>
-              <p><a class="btn btn-lg btn-primary" href="{{ route('products') }}">Shop now</a></p>
+              <p><a class="btn btn-lg btn-primary" href="{{ route('products', ['category' => 'Candles']) }}">Shop now</a></p>
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@
               allowing you to travel through your senses. Each candle is crafted to capture 
               the unique essence of a particular region.
               </p>
-              <p><a class="btn btn-lg btn-primary" href="{{ route('products') }}">Shop now</a></p>
+              <p><a class="btn btn-lg btn-primary" href="{{ route('products', ['category' => 'Candles']) }}">Shop now</a></p>
             </div>
           </div>
         </div>
