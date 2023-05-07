@@ -162,10 +162,15 @@ class CartController extends Controller
     {
         $id = $request->id;
         $quantity = $request->input('quantity');
+        if ($quantity == 0 ) {
+            $this->deleteItem($id);
+            return redirect()->back()->with('success', 'Cart item deleted successfully');
+        }
+        
         if (Auth::check()) {
             $user = Auth::user();
             $cart_item = $user->cartItems()->where('product_id', $id)->first();
-            
+
             if ($cart_item) {
                 $cart_item->quantity = $quantity;
                 $cart_item->save();
@@ -174,11 +179,12 @@ class CartController extends Controller
             }
         } else {
             $cart = session()->get('cart');
-            
             if (isset($cart[$id])) {
                 $cart[$id]['quantity'] = $quantity;
                 session()->put('cart', $cart);
                 return redirect()->back()->with('success', 'Cart item updated successfully');
+            }else {
+                $this->addToCart($request);
             }
         }
         
@@ -189,6 +195,12 @@ class CartController extends Controller
     public function removeCartItem(Request $request)
     {
         $id = $request->id;
+        $this->deleteItem($id);
+
+        return redirect()->back()->with('success', 'Item has been removed');
+    }
+
+    private function deleteItem($id){
         if (Auth::check()) {
             $user = Auth::user(); 
             // Find the cart item for the specified user and product
@@ -208,8 +220,6 @@ class CartController extends Controller
                 session()->put('cart', $cart);
             }
         }
-
-        return redirect()->back()->with('success', 'Item has been removed');
     }
     
     public function syncCart(){

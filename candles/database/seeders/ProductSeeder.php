@@ -196,7 +196,7 @@ class ProductSeeder extends Seeder
             'price' => 19.00,
             'discount' => 0,
             'stock' => 10,
-            'burn_hours' => 5.5,
+            'burn_hours' => 5,
             'brand_id' => 1,
             'type_id' => 1,
             'color' => "brown",

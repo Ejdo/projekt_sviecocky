@@ -1,6 +1,11 @@
 @extends('html_template')
 
 @section('content') 
+@if(session()->has('success'))
+      <div class="alert alert-success">
+          {{ session()->get('success') }}
+      </div>
+  @endif
   <main class="container-xl">
       <section class="container-fluid my-5">
         <div class="row my-4 align-items-center">
@@ -17,18 +22,21 @@
                 <span>{{number_format($product->price, 2)}} €</span>
             <?php endif; ?>
             </div>
+            <form action="{{ route('cart.update', ['id' => $product['id']]) }}" method="POST">
+            @csrf
             <div class="d-flex">
               <input
                 class="text-center me-3"
-                type="num"
-                value="1"
+                name="quantity"
+                type="number"
+                value="{{$quantity}}"
+                min="0"
                 style="max-width: 3rem"
-              />
-              <form action="{{ route('cart.add', ['id' => $product->id]) }}" method="POST">
-                @csrf
+              />  
                 <button class="btn main-button" type="submit">Add to Cart</button>
               </form>
             </div>
+            <p {{$class}} >Product in basket</p>
           </div>
         </div>
       </section>
