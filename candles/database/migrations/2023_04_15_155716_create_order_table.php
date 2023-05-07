@@ -19,13 +19,12 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('address_id');
             $table->foreign('address_id')->references('id')->on('addresses');
-            $table->smallInteger('status');
+            $table->string('status',25);
             $table->timestamp('created_at');
             $table->bigInteger('delivery_option_id');
             $table->foreign('delivery_option_id')->references('id')->on('delivery_options');
             $table->bigInteger('payment_option_id');
             $table->foreign('payment_option_id')->references('id')->on('payment_options');
-            $table->float('tax');
             $table->float('total_price');
         });
 

@@ -9,6 +9,8 @@ use App\Models\Scent;
 use App\Models\ProductType;
 use App\Models\Brand;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
+
 
 class ProductController extends Controller
 {
@@ -17,6 +19,7 @@ class ProductController extends Controller
         $scents = Scent::all();
         $types = ProductType::all();
         $brands = Brand::all();
+        $categ = null;
 
         $productsQuery = Product::query();
 
@@ -25,6 +28,7 @@ class ProductController extends Controller
         if ($request->filled('category')) {
             $categoryId = Category::where('name', $request->category)->value('id');
             $productsQuery->where('category_id', $categoryId);
+            $categ = Category::where('name', $request->category)->first();
         }
 
         if ($request->filled('brand')) {
@@ -38,8 +42,10 @@ class ProductController extends Controller
         }
 
         if ($request->filled('scent')) {
-            $categoryId = Category::where('id', $request->category)->value('id');
-            $productsQuery->where('category_id', $categoryId);
+            $scentId = $request->scent;
+            $productsQuery->whereHas('scents', function ($query) use ($scentId) {
+                $query->where('scents.id', $scentId);
+            });
         }
 
         if ($request->filled('color')) {
@@ -55,16 +61,55 @@ class ProductController extends Controller
         }
     
         // Get the filtered products
-        $products = $productsQuery->paginate(10);
-    
-        return view('products', compact('scents', 'types', 'brands', 'products', 'filter_by'));
+        $products = $productsQuery->paginate(6);
+        return view('products', compact('categ', 'scents', 'types', 'brands', 'products', 'filter_by'));
     }
 
 
     public function show_product_detail(Request $request) {
+        $quantity = 1;
+        $class = 'hidden';
+        if (Auth::check()) {
+            $user = Auth::user(); 
+            $item = $user->cartItems()->where('product_id', $request->id)->first();
+            $quantity = $item['quantity'];
+            $class = '';
+        }else{
+            $cart = session()->get('cart');
+            if ( isset($cart[$request->id]) ){
+                $item = $cart[$request->id];
+                $quantity = $item['quantity'];
+                $class = '';
+            }
+        }
+        
         $product = Product::find($request->id);
         $trending = Product::where('trending', true)->take(4)->get();
-        return view('product', ['product' => $product, 'trending'=> $trending]);
+        return view('product', ['product' => $product, 'trending'=> $trending, 'quantity' => $quantity,  'class' => $class]);
+    }
+
+
+    public function show_search() {
+        return view('search');
+    }
+
+    public function search(Request $request) {
+        $search = $request->input('search');
+
+
+        
+        $products = Product::where('name', 'LIKE', "%$search%")
+            ->orWhere('description', 'LIKE', "%$search%")
+            ->orWhereHas('category', function($query) use ($search) {
+                $query->where('name', 'LIKE', "%$search%");
+            })
+            ->orWhereHas('scents', function ($query) use ($search) {
+                $query->where('scents.name','LIKE', "%$search%");
+            })
+            ->get();
+
+    
+        return view('search', compact('products'));
     }
 }
 

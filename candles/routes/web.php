@@ -29,13 +29,22 @@ Route::get('/product', 'App\Http\Controllers\ProductController@show_product_deta
 Route::get('/cart', 'App\Http\Controllers\CartController@show_cart') ->name('cart');
 Route::get('/add-to-cart', 'App\Http\Controllers\CartController@addToCart')->name('cart.add');
 Route::get('/cart/remove/', 'App\Http\Controllers\CartController@removeCartItem')->name('cart.remove');
-Route::get('/cart/update/', 'App\Http\Controllers\CartController@updateCartItemQuantity')->name('cart.update');
+Route::post('/cart/update/', 'App\Http\Controllers\CartController@updateCartItemQuantity')->name('cart.update');
 
 
 Route::get('/checkout', 'App\Http\Controllers\CheckoutController@show_checkout') ->name('checkout');
+Route::post('/checkout/update/', 'App\Http\Controllers\CheckoutController@update_checkout') ->name('checkout.update');
+Route::post('/checkout/make/', 'App\Http\Controllers\CheckoutController@make_order') ->name('checkout.make');
+
 Route::get('/login', 'App\Http\Controllers\UserController@show_login') ->name('login');
 Route::post('/login', 'App\Http\Controllers\UserController@login') ->name('login.submit');
 Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
 Route::get('/register', 'App\Http\Controllers\UserController@showRegistration')->name('register');
 Route::post('/register', 'App\Http\Controllers\UserController@register')->name('register.submit');
-Route::get('/search', 'App\Http\Controllers\SearchController@show_search') ->name('search');
+Route::get('/search', 'App\Http\Controllers\ProductController@show_search') ->name('search');
+Route::get('/search_results', 'App\Http\Controllers\ProductController@search') ->name('search.submit');
+
+Route::get('/change_password', 'App\Http\Controllers\UserController@showChangePass')->name('password.change');
+Route::post('/change_password', 'App\Http\Controllers\UserController@ChangePassword')->name('password.change.submit');
+
+Route::post('/change_information', 'App\Http\Controllers\UserController@ChangeInfo')->name('information.submit');

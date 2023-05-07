@@ -27,13 +27,14 @@ class Product extends Model
         'brand_id',
         'type_id',
         'color',
-        'image_path',
+        'photo_path',
+        'photo_path2',
         'trending',
     ];
 
     public function category()
     {
-        return $this->belongsTo(ProductCategory::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function brand()

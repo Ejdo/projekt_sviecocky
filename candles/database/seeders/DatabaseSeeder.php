@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        (new DeliveryOptionsTableSeeder)->run();
+        (new PaymentOptionsSeeder)->run();
         (new BrandSeeder)->run();
         (new ProductTypeSeeder)->run();
         (new ProductCategorySeeder)->run();
@@ -28,6 +30,7 @@ class DatabaseSeeder extends Seeder
         (new ScentSeeder)->run();
         (new UserSeeder)->run();
         (new ScentFamilySeeder)->run();
-
+        (new CountrySeeder)->run();
+        (new AddressSeeder)->run();
     }
 }
