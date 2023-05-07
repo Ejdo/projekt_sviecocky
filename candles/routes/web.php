@@ -49,7 +49,7 @@ Route::post('/products/create', 'App\Http\Controllers\AdminController@create_pro
 Route::get('/products/create', 'App\Http\Controllers\AdminController@view_create_product')->name('product.create');
 Route::get('/products/{id}/edit', 'App\Http\Controllers\AdminController@show_edit_product')->name('product.edit');
 Route::put('/products/{id}', 'App\Http\Controllers\AdminController@update_product')->name('product.update');
-Route::delete('/products/{id}', 'App\Http\Controllers\AdminController@delete_product')->name('product.delete');
+Route::get('/products/delete/{id}', 'App\Http\Controllers\AdminController@delete_product')->name('product.delete');
 
 
 Route::get('/change_password', 'App\Http\Controllers\UserController@showChangePass')->name('password.change');

@@ -78,6 +78,19 @@ class AdminController extends Controller
                 $product->category_id = $request->input('category_id');
                 $product->type_id = $request->input('type_id');
                 $product->brand_id = $request->input('brand_id');
+                if ($request->hasFile('photo1')) {
+                    $photo = $request->file('photo1');
+                    $filename = time() . '.' . $photo->getClientOriginalExtension();
+                    $photo->move(public_path('images'), $filename);
+                    $product->photo_path = 'images/' . $filename;
+                }
+                if ($request->hasFile('photo2')) {
+                    $photo = $request->file('photo2');
+                    $filename = time() . '.' . $photo->getClientOriginalExtension();
+                    $photo->move(public_path('images'), $filename);
+                    $product->photo_path2 = 'images/' . $filename;
+                }
+                
                 $product->save();
 
                 return redirect()->route('admin');
@@ -105,6 +118,22 @@ class AdminController extends Controller
                 $product->trending = $request->input('trending') ? true : false;
                 $product->description = $request->input('description');
                 $product->ingredients = $request->input('ingredients');
+                $product->category_id = $request->input('category_id');
+                $product->type_id = $request->input('type_id');
+                $product->brand_id = $request->input('brand_id');
+                if ($request->hasFile('photo1')) {
+                    $photo = $request->file('photo1');
+                    $filename = time() . '.' . $photo->getClientOriginalExtension();
+                    $photo->move(public_path('images'), $filename);
+                    $product->photo_path = 'images/' . $filename;
+                }
+                if ($request->hasFile('photo2')) {
+                    $photo = $request->file('photo2');
+                    $filename = time() . '.' . $photo->getClientOriginalExtension();
+                    $photo->move(public_path('images'), $filename);
+                    $product->photo_path2 = 'images/' . $filename;
+                }
+
                 $product->save();
 
                 return redirect()->route('admin');
