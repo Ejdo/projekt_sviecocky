@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('last_name', 50);
             $table->string('address', 100)->nullable();
             $table->string('city', 100)->nullable();
-            $table->string('postal_code', 5)->nullable();
+            $table->string('postal_code', 10)->nullable();
             $table->string('phone_number', 15)->nullable();
             $table->timestamps();
         });

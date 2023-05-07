@@ -29,7 +29,7 @@
             <div class="col-md-12">
               <p>
                 <label>Email <span class="required">*</span></label>
-                <input type="email" name="email" class="form-control" value = "{{$mail}}" required/>
+                <input type="email" name="email" class="form-control" value = "{{$email}}" required/>
               </p>
             </div>
           </div>
@@ -51,7 +51,7 @@
               <div class="col-md-12">
                 <p>
                   <label>Street Adress <span class="required">*</span></label>
-                  <input type="text" name="adress" class="form-control" value = "{{$address}}" required/>
+                  <input type="text" name="address" class="form-control" value = "{{$address}}" required/>
                 </p>
               </div>
               <div class="col-md-6">
@@ -69,7 +69,7 @@
               <div class="col-md-12">
                 <p>
                   <label>ZIP CODE <span class="required">*</span></label>
-                  <input type="text" name="zcode" class="form-control" value = "{{$postal}}" required/>
+                  <input type="text" name="postal_code" class="form-control" value = "{{$postal}}" required/>
                 </p>
               </div>
               <div class="col-md-12">
@@ -82,92 +82,44 @@
           </div>
           <div class="checkbox-form md-8">
             <h3>Shipping</h3>
+            @foreach ($delivery as $option)
             <div class="col-md-12">
               <p>
                 <input
                   class="form-check-input"
                   type="radio"
                   name="shipping"
-                  id="standart"
-                  value="2.49"
+                  id="{{$option['name']}}"
+                  value="{{$option['id']}}"
                   required
                 />
-                <label class="form-check-label" for="standart">
-                  Standart (2.49€) - 7 days
+                <label class="form-check-label" for="{{$option['name']}}">
+                  {{$option['name']}} - ({{$option['price']}}€)
                 </label>
               </p>
             </div>
-            <div class="col-md-12">
-              <p>
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="shipping"
-                  id="UPS"
-                  value="3.49"
-                />
-                <label class="form-check-label" for="UPS"> UPS (3.49€) - 5 days </label>
-              </p>
-            </div>
-            <div class="col-md-12">
-              <p>
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="shipping"
-                  id="UPS3D"
-                  value="5.99"
-                />
-                <label class="form-check-label" for="UPS3D">
-                  UPS Three-Day Select (5.99€) - 3 days
-                </label>
-              </p>
-            </div>
-            <div class="col-md-12">
-              <p>
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="shipping"
-                  id="UPSAir"
-                  value="6.99"
-                />
-                <label class="form-check-label" for="UPSAir">
-                  UPS Next Day Air (6.99€) -  2 days
-                </label>
-              </p>
-            </div>
+            @endforeach
           </div>
           <div class="checkbox-form md-8">
             <article>
               <h3>Payment</h3>
               <p>All transactions are secure and encrypted.</p>
             </article>
+            @foreach($payment as $option)
             <div class="col-md-12">
               <p>
                 <input
                   class="form-check-input"
                   type="radio"
                   name="payment"
-                  id="card"
-                  value="card"
+                  id="{{$option['name']}}"
+                  value="{{$option['id']}}"
                   required
                 />
-                <label class="form-check-label" for="card"> Credit card </label>
+                <label class="form-check-label" for="{{$option['name']}}"> {{$option['name']}} - ({{$option['price']}}€)</label>
               </p>
             </div>
-            <div class="col-md-12">
-              <p>
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="payment"
-                  id="PayPal"
-                  value="PayPal"
-                />
-                <label class="form-check-label" for="PayPal"> PayPal </label>
-              </p>
-            </div>
+            @endforeach
           </div>
           <button type="submit" class="btn main-button">
             Check Information
@@ -189,6 +141,10 @@
             </tr>
             <tr>
               <td>Shipping</td>
+              <td class="text-center">0€</td>
+            </tr>
+            <tr>
+              <td>Payment Method</td>
               <td class="text-center">0€</td>
             </tr>
             <tr>
