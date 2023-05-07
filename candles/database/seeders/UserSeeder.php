@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'first_name' => 'Jozko',
             'last_name' => 'Admin',
             'phone_number' => '555-1234',
+
             'role' => 'admin',
             'registered_at' => now(),
         ]);
@@ -30,7 +31,7 @@ class UserSeeder extends Seeder
             'first_name' => 'Miro',
             'last_name' => 'Hniezdič',
             'phone_number' => '555-5678',
-            'role' => 'client',
+            'role' => "client",
             'registered_at' => now(),
         ]);
     }

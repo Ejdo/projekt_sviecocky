@@ -15,6 +15,8 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
         $id = $request->id; 
+        $quantity = $request->quantity;
+        $quantity = $quantity ?? 1;
         $product = Product::find($id);
         
         if(!$product) {
@@ -30,7 +32,7 @@ class CartController extends Controller
                 $user->cartItems()->create([
                     'user_id' => $user->id,
                     'product_id' => $id,
-                    'quantity' => 1,
+                    'quantity' => $quantity,
                     'price' => $product->price,
                     'discount' => $product->discount,
                     'created_at' => now(),
@@ -55,7 +57,7 @@ class CartController extends Controller
                     $id => [
                         "product_id" => $product->name,
                         "name" => $product->name,
-                        "quantity" => 1,
+                        "quantity" => $quantity,
                         "price" => $product->price,
                         "image" => $product->photo_path
                     ]
@@ -73,7 +75,7 @@ class CartController extends Controller
             $cart[$id] = [
                 "product_id" => $product->name,
                 "name" => $product->name,
-                "quantity" => 1,
+                "quantity" => $quantity,
                 "price" => $product->price,
                 "image" => $product->photo_path
             ];
@@ -156,28 +158,35 @@ class CartController extends Controller
         ]);
     }
 
-    public function update_cart_item(Request $request)
+    public function updateCartItemQuantity(Request $request)
     {
         $id = $request->id;
         $quantity = $request->input('quantity');
+        if ($quantity == 0 ) {
+            $this->deleteItem($id);
+            return redirect()->back()->with('success', 'Cart item deleted successfully');
+        }
         
         if (Auth::check()) {
             $user = Auth::user();
             $cart_item = $user->cartItems()->where('product_id', $id)->first();
-            
+
             if ($cart_item) {
                 $cart_item->quantity = $quantity;
                 $cart_item->save();
                 session()->forget('cart');
                 return redirect()->back()->with('success', 'Cart item updated successfully');
+            }else{
+                $this->addToCart($request);
             }
         } else {
             $cart = session()->get('cart');
-            
             if (isset($cart[$id])) {
                 $cart[$id]['quantity'] = $quantity;
                 session()->put('cart', $cart);
                 return redirect()->back()->with('success', 'Cart item updated successfully');
+            }else {
+                $this->addToCart($request);
             }
         }
         
@@ -188,6 +197,12 @@ class CartController extends Controller
     public function removeCartItem(Request $request)
     {
         $id = $request->id;
+        $this->deleteItem($id);
+
+        return redirect()->back()->with('success', 'Item has been removed');
+    }
+
+    private function deleteItem($id){
         if (Auth::check()) {
             $user = Auth::user(); 
             // Find the cart item for the specified user and product
@@ -207,8 +222,6 @@ class CartController extends Controller
                 session()->put('cart', $cart);
             }
         }
-
-        return redirect()->back()->with('success', 'Item has been removed');
     }
     
     public function syncCart(){

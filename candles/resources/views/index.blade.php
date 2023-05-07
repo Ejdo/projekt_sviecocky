@@ -46,12 +46,11 @@
 
           <div class="container">
             <div class="carousel-caption text-start">
-              <h1>New Spring Collection</h1>
+              <h1>Romance Collection</h1>
               <p>
-                Indulge in the refreshing scents of the season with our latest
-                collection of scented candles, carefully crafted to capture the
-                essence of springtime blooms and the rejuvenating energy of the
-                outdoors.
+              Set the mood for a romantic evening with this collection of sensual and alluring scents.
+               From the sweet and spicy aroma of cinnamon to the warm and musky scent of sandalwood, 
+               these candles are perfect for creating a cozy and intimate atmosphere.
               </p>
               <p><a class="btn btn-lg btn-primary" href="{{ route('products') }}">Shop now</a></p>
             </div>
@@ -72,12 +71,11 @@
 
           <div class="container">
             <div class="carousel-caption text-start">
-              <h1>New Spring Collection</h1>
+              <h1>Spa Collection</h1>
               <p>
-                Indulge in the refreshing scents of the season with our latest
-                collection of scented candles, carefully crafted to capture the
-                essence of springtime blooms and the rejuvenating energy of the
-                outdoors.
+              Create a spa-like ambiance in your own home with this collection of calming
+              and soothing scents. Each candle is formulated to promote relaxation and reduce 
+              stress, making them perfect for unwinding after a long day.
               </p>
               <p><a class="btn btn-lg btn-primary" href="{{ route('products') }}">Shop now</a></p>
             </div>
@@ -98,12 +96,11 @@
 
           <div class="container">
             <div class="carousel-caption text-start">
-              <h1>New Spring Collection</h1>
+              <h1>Wanderlust Collection</h1>
               <p>
-                Indulge in the refreshing scents of the season with our latest
-                collection of scented candles, carefully crafted to capture the
-                essence of springtime blooms and the rejuvenating energy of the
-                outdoors.
+              This collection features scents inspired by different parts of the world, 
+              allowing you to travel through your senses. Each candle is crafted to capture 
+              the unique essence of a particular region.
               </p>
               <p><a class="btn btn-lg btn-primary" href="{{ route('products') }}">Shop now</a></p>
             </div>
@@ -169,7 +166,7 @@
                 </div>
                 <div class="row py-2">
                   <p class="col product-name">{{$product->name}}</p>
-                  <p class="col price">{{number_format($product->price, 2)}} €</p>
+                  <p class="col price">{{number_format($product->price  * (1 - $product->discount/ 100), 2)}} €</p>
                 </div>
               </div>
           @endforeach

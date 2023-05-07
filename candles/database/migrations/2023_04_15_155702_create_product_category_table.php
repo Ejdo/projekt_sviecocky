@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100);
             $table->string('description', 200);
+            $table->string('photo_path', 200);
         });
 
         Schema::enableForeignKeyConstraints();

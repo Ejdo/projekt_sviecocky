@@ -43,7 +43,7 @@
                 <a href="{{ route('products', ['category' => 'Candles']) }}" class="nav-link">Candles</a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('products', ['category' => 'Laterns']) }}" class="nav-item nav-link">Lanterns</a>
+                <a href="{{ route('products', ['category' => 'Lanterns']) }}" class="nav-item nav-link">Lanterns</a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('products', ['category' => 'Incense Sticks']) }}" class="nav-item nav-link">Incense Sticks</a >
