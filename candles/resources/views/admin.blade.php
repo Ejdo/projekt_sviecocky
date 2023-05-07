@@ -56,12 +56,14 @@
                         <th>ID</th>
                         <th>Products</th>
                         <th>Quantity</th>
-                        <th>Total Price</th>
+                        <th>Price</th>
                         <th>Address</th>
                         <th>Name</th>
                         <th>City</th>
                         <th>Country</th>
                         <th>Status</th>
+                        <th>Created at</th>
+                        <th>Shipment</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -84,6 +86,8 @@
                             <td>{{ $order->address->city }}</td>
                             <td>{{ $order->address->country->name }}</td>
                             <td>{{ $order->status }}</td>
+                            <td>{{ $order->created_at }}</td>
+                            <td>{{ $order->deliveryOption->name }}</td>
                         </tr>
                     @endforeach
                 </tbody>

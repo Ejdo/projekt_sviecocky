@@ -269,3 +269,26 @@ table td input {
   background-color: #654c3e;
   color: white;
 }
+
+.pagination{
+  border-radius: 0;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #e6ddcf;
+  border-color: #e6ddcf;
+}
+
+.pagination .page-item .page-link,
+.pagination .page-item span {
+    color: #000000;
+}
+
+/* Pagination disabled links */
+.pagination .page-item.disabled .page-link {
+  color: #000000;
+  background-color: #e6ddcf;
+  border-color: #e6ddcf;
+}
+
+
