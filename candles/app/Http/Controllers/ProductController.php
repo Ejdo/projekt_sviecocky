@@ -72,8 +72,11 @@ class ProductController extends Controller
         if (Auth::check()) {
             $user = Auth::user(); 
             $item = $user->cartItems()->where('product_id', $request->id)->first();
-            $quantity = $item['quantity'];
-            $class = '';
+            if(isset($item)){
+                $quantity = $item['quantity'];
+                $class = '';
+            }
+            
         }else{
             $cart = session()->get('cart');
             if ( isset($cart[$request->id]) ){
