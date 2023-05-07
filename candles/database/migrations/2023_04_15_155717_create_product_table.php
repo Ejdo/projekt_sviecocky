@@ -32,6 +32,7 @@ return new class extends Migration
             $table->bigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('product_types');
             $table->string('photo_path', 250);
+            $table->string('photo_path2', 250);
         });
 
         Schema::enableForeignKeyConstraints();

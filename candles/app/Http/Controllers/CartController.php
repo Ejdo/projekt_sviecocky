@@ -176,6 +176,8 @@ class CartController extends Controller
                 $cart_item->save();
                 session()->forget('cart');
                 return redirect()->back()->with('success', 'Cart item updated successfully');
+            }else{
+                $this->addToCart($request);
             }
         } else {
             $cart = session()->get('cart');

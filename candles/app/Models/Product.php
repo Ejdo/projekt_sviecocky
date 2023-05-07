@@ -27,7 +27,8 @@ class Product extends Model
         'brand_id',
         'type_id',
         'color',
-        'image_path',
+        'photo_path',
+        'photo_path2',
         'trending',
     ];
 

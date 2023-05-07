@@ -67,19 +67,22 @@ class ProductController extends Controller
 
 
     public function show_product_detail(Request $request) {
-        if (Auth::check()) {
-            $user = Auth::user(); 
-            $cart = ($user->cartItems);
-        }else{
-            $cart = session()->get('cart');
-        }
         $quantity = 1;
         $class = 'hidden';
-        if ( isset($cart[$request->id]) ){
-            $item = $cart[$request->id];
+        if (Auth::check()) {
+            $user = Auth::user(); 
+            $item = $user->cartItems()->where('product_id', $request->id)->first();
             $quantity = $item['quantity'];
             $class = '';
+        }else{
+            $cart = session()->get('cart');
+            if ( isset($cart[$request->id]) ){
+                $item = $cart[$request->id];
+                $quantity = $item['quantity'];
+                $class = '';
+            }
         }
+        
         $product = Product::find($request->id);
         $trending = Product::where('trending', true)->take(4)->get();
         return view('product', ['product' => $product, 'trending'=> $trending, 'quantity' => $quantity,  'class' => $class]);
