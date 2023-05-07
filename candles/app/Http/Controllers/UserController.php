@@ -54,7 +54,12 @@ class UserController extends Controller
             Auth::login($user);
             $cartController = new CartController();
             $cartController->syncCart();
-            return redirect('/');
+            if ($user->role == 'admin'){
+                return redirect('/admin');
+            }
+            else {
+                return redirect('/');
+            }
         }
     
         // password doesn't match
@@ -91,7 +96,7 @@ class UserController extends Controller
         $user->last_name = $request->input('last_name');
         $user->email = $email;
         $user->password = Hash::make($request->input('password'));
-        $user->phone_number = '';
+        $user->phone_number = '555-555';
         $user->role = 'client';
         $user->registered_at = now();
         $user->save();

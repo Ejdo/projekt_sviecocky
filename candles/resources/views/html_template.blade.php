@@ -59,6 +59,12 @@
 
           <div class="d-lg-flex col-2 justify-content-end d-none d-md-flex">
             <div class="row gx-3">
+              @if (Auth::check() && Auth::user()->isAdmin == 1)
+                <a
+                  href="{{ route('admin') }}"
+                  class="fa-solid fa-screwdriver-wrench col nav-icon"
+                ></a>
+              @endif
               <a
                 href="{{ route('search') }}"
                 class="fa-solid fa-magnifying-glass col nav-icon"

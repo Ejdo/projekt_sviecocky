@@ -20,7 +20,8 @@ class UserSeeder extends Seeder
             'first_name' => 'Jozko',
             'last_name' => 'Admin',
             'phone_number' => '555-1234',
-            'role' => "admin",
+
+            'role' => 'admin',
             'registered_at' => now(),
         ]);
         
