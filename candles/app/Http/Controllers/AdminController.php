@@ -9,6 +9,7 @@ use App\Models\Brand;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
 {
@@ -152,6 +153,7 @@ class AdminController extends Controller
             $user = Auth::user();
             if ($user->role == 'admin') {
                 $product = Product::findOrFail($id);
+                File::delete($product->photo_path);
                 $product->delete();
                 return redirect()->route('admin');
             } else {
