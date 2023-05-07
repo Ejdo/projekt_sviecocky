@@ -156,7 +156,8 @@ class CheckoutController extends Controller
         if (Auth::check()) {
             $user = Auth::user(); 
             $cart = ($user->cartItems);
-            CartItem::where('id', $user->id )->delete();
+            CartItem::where('user_id', $user->id)->delete();
+            session()->forget('cart');
         }else{
             $cart = session()->get('cart');
             session()->forget('cart');
