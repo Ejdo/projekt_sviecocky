@@ -42,7 +42,7 @@ class UserController extends Controller
             Auth::login($user);
             $cartController = new CartController();
             $cartController->syncCart();
-            if ($user->isAdmin == 1){
+            if ($user->role == 'admin'){
                 return redirect('/admin');
             }
             else {
@@ -85,7 +85,7 @@ class UserController extends Controller
         $user->email = $email;
         $user->password = Hash::make($request->input('password'));
         $user->phone_number = '555-555';
-        $user->isAdmin = false;
+        $user->role = 'client';
         $user->registered_at = now();
         $user->save();
 

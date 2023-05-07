@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('first_name', 50);
             $table->string('last_name', 50);
             $table->string('phone_number', 15);
-            $table->boolean('isAdmin');
+            $table->string('role',15);
             $table->timestamp('registered_at');
         });
 

@@ -15,7 +15,7 @@ class AdminController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->isAdmin == 1) {
+            if ($user->role == 'admin') {
                 $products = Product::all();
                 return view('admin', compact('products'));
             } else {
@@ -29,7 +29,7 @@ class AdminController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->isAdmin == 1) {
+            if ($user->role == 'admin') {
                 $product = Product::find($id);
                 $categories = Category::all();
                 $types = ProductType::all();
@@ -46,7 +46,7 @@ class AdminController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->isAdmin == 1) {
+            if ($user->role == 'admin') {
                 $categories = Category::all();
                 $types = ProductType::all();
                 $brands = Brand::all();
@@ -62,7 +62,7 @@ class AdminController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->isAdmin == 1) {
+            if ($user->role == 'admin') {
                 $product = new Product();
 
                 $product->name = $request->input('name');
@@ -92,7 +92,7 @@ class AdminController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->isAdmin == 1) {
+            if ($user->role == 'admin') {
                 $product = Product::findOrFail($id);
 
                 $product->name = $request->input('name');
@@ -119,7 +119,7 @@ class AdminController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->isAdmin == 1) {
+            if ($user->role == 'admin') {
                 $product = Product::findOrFail($id);
                 $product->delete();
                 return redirect()->route('admin');
