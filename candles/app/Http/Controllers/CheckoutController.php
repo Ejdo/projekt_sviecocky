@@ -108,10 +108,8 @@ class CheckoutController extends Controller
         
 
         foreach ($cart as $id => $item) {
-            $product = Product::find($id);
-
-            if ($product) {
-                $itemTotalPrice = $item['quantity'] * ($product->price - $product->discount);
+            if ($item) {
+                $itemTotalPrice = $item['quantity'] * ($item->price - $item->discount);
                 $totalPrice += $itemTotalPrice;
             } else {
                 // Remove invalid product from cart
@@ -119,6 +117,7 @@ class CheckoutController extends Controller
                 session()->put('cart', $cart);
             }
         }
+        
 
         if ($request->filled('country')) {
             $countryName = $request->input('country');
@@ -154,7 +153,6 @@ class CheckoutController extends Controller
         
         $order = new Order();
         $country = Country::where('name', $request->input('country'))->first();
-
         if (Auth::check()) {
             $user = Auth::user(); 
             $cart = ($user->cartItems);

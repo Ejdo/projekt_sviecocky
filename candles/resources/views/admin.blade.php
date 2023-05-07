@@ -46,5 +46,49 @@
             <a href="{{ route('product.create') }}" class="btn btn-primary">Create New Product</a>
         </div>
     </section>
+    <br>
+    <section class="row">
+        <div class="container">
+            <h2>Order List</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Products</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Address</th>
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>Country</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($orders as $order)
+                        <tr>
+                            <td>{{ $order->id }}</td>
+                            <td>
+                            @foreach($order->items as $item)
+                                {{ $item->product->name }} <br>
+                            @endforeach
+                            </td>
+                            <td>
+                            @foreach($order->items as $item)
+                                {{ $item->quantity }}<br>
+                            @endforeach
+                            </td>
+                            <td>{{ $order->total_price }}</td>
+                            <td>{{ $order->address->address }}</td>
+                            <td>{{ $order->address->first_name}} {{ $order->address->last_name }}</td>
+                            <td>{{ $order->address->city }}</td>
+                            <td>{{ $order->address->country->name }}</td>
+                            <td>{{ $order->status }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </section>
 </main>
 @endsection

@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductType;
 use App\Models\Brand;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,8 @@ class AdminController extends Controller
             $user = Auth::user();
             if ($user->role == 'admin') {
                 $products = Product::all();
-                return view('admin', compact('products'));
+                $orders = Order::all();
+                return view('admin', compact('products','orders'));
             } else {
                 return redirect()->route('home');
             }
