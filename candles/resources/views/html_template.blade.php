@@ -59,7 +59,7 @@
 
           <div class="d-lg-flex col-2 justify-content-end d-none d-md-flex">
             <div class="row gx-3">
-              @if (Auth::check() && Auth::user()->isAdmin == 1)
+              @if (Auth::check() && Auth::user()->role=='admin')
                 <a
                   href="{{ route('admin') }}"
                   class="fa-solid fa-screwdriver-wrench col nav-icon"

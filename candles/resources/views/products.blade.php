@@ -38,7 +38,10 @@
               <div class="collapse" id="brand-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                  @foreach ($brands as $brand)
-                    <li><a href="{{ route('products', ['brand' => $brand->id, 'category' => $categ->name]) }}" class="link-dark rounded">{{ $brand->name }}</a></li>
+                    @php
+                    $classes = $filters['brand'] == $brand->id ? 'rounded filter-btn-selected' : 'link-dark rounded'
+                    @endphp
+                    <li><a href="{{ route('products', ['brand' => $brand->id == $filters['brand'] ? null : $brand->id, 'type' => $filters['type'], 'scent' => $filters['scent'], 'color' => $filters['color'], 'category' => $categ->name]) }}" class="{{$classes}}">{{ $brand->name }}</a></li>
                 @endforeach
                 </ul>
               </div>
@@ -54,7 +57,10 @@
               <div class="collapse" id="product-type-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                   @foreach ($types as $type)
-                    <li><a href="{{ route('products', ['type' => $type->id,  'category' => $categ->name]) }}" class="link-dark rounded">{{ $type->name }}</a></li>
+                    @php
+                      $classes = $filters['type'] == $type->id ? 'rounded filter-btn-selected' : 'link-dark rounded'
+                    @endphp
+                    <li><a href="{{ route('products', ['brand' => $filters['brand'], 'type' => $type->id == $filters['type'] ? null : $type->id, 'scent' => $filters['scent'], 'color' => $filters['color'], 'category' => $categ->name]) }}" class="{{$classes}}">{{ $type->name }}</a></li>
                   @endforeach
                 </ul>
               </div>
@@ -70,7 +76,10 @@
               <div class="collapse" id="scent-family-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                   @foreach ($scents as $scent)
-                    <li><a href="{{ route('products', ['scent' => $scent->id, 'category' => $categ->name]) }}" class="link-dark rounded">{{ $scent->name }}</a></li>
+                    @php
+                      $classes = $filters['scent'] == $scent->id ? 'rounded filter-btn-selected' : 'link-dark rounded'
+                    @endphp
+                    <li><a href="{{ route('products', ['brand' => $filters['brand'], 'type' => $filters['type'], 'scent' => $scent->id == $filters['scent'] ? null : $scent->id, 'color' => $filters['color'], 'category' => $categ->name]) }}" class="{{$classes}}">{{ $scent->name }}</a></li>
                   @endforeach
                 </ul>
               </div>
@@ -85,15 +94,15 @@
               </button>
               <div class="collapse" id="color-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li><a href=" {{ route('products', ['color' => 'white', 'category' => $categ->name]) }}" class="link-dark rounded">White</a></li>
-                  <li><a href=" {{ route('products', ['color' => 'yellow', 'category' => $categ->name]) }}" class="link-dark rounded">Yellow</a></li>
-                  <li><a href=" {{ route('products', ['color' => 'orange', 'category' => $categ->name]) }}" class="link-dark rounded">Orange</a></li>
-                  <li><a href=" {{ route('products', ['color' => 'red', 'category' => $categ->name]) }}" class="link-dark rounded">Red</a></li>
-                  <li><a href=" {{ route('products', ['color' => 'pink', 'category' => $categ->name]) }}" class="link-dark rounded">Pink</a></li>
-                  <li><a href=" {{ route('products', ['color' => 'purple', 'category' => $categ->name]) }}" class="link-dark rounded">Purple</a></li>
-                  <li><a href=" {{ route('products', ['color' => 'blue', 'category' => $categ->name]) }}" class="link-dark rounded">Blue</a></li>
-                  <li><a href=" {{ route('products', ['color' => 'green', 'category' => $categ->name]) }}" class="link-dark rounded">Green</a></li>
-                  <li><a href=" {{ route('products', ['color' => 'brown', 'category' => $categ->name]) }}" class="link-dark rounded">Brown</a></li>
+                  @php
+                    $colors = ['white', 'yellow', 'orange', 'red', 'pink', 'purple', 'blue', 'green', 'brown']
+                  @endphp
+                  @foreach ($colors as $color)
+                    @php
+                      $classes = $filters['color'] == $color ? 'rounded filter-btn-selected' : 'link-dark rounded'
+                    @endphp
+                    <li><a href="{{ route('products', ['brand' => $filters['brand'], 'type' => $filters['type'], 'scent' => $filters['scent'], 'color' => $color == $filters['color'] ? null : $color, 'category' => $categ->name]) }}" class="{{$classes}}">{{ ucfirst($color) }}</a></li>
+                  @endforeach
                 </ul>
               </div>
             </li>
@@ -102,7 +111,6 @@
       </aside>
       <section class="col-sm-8 col-xl-9 text-center">
         <div class="justify-content-end d-flex">
-
         <div class="btn-group">
           <h5 class="pe-2">Sort by:</h5>
           <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -139,26 +147,24 @@
         <nav class="d-flex justify-content-center">
           {!! $products->withQueryString()->appends(['category' => $categ->name])->links() !!}
         </nav>
-
       </section>
     </main>
 @endsection
 
 @section('scripts')
-
   <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
 @endsection

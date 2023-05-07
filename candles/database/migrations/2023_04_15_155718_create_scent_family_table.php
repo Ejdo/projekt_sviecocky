@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('scent_id');
             $table->foreign('scent_id')->references('id')->on('scents');
             $table->bigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
 
         Schema::enableForeignKeyConstraints();

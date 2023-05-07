@@ -20,6 +20,12 @@ class ProductController extends Controller
         $types = ProductType::all();
         $brands = Brand::all();
         $categ = null;
+        $filters = [
+            "brand" => null,
+            "type" => null,
+            "scent" => null,
+            "color" => null
+        ];
 
         $productsQuery = Product::query();
 
@@ -34,11 +40,13 @@ class ProductController extends Controller
         if ($request->filled('brand')) {
             $categoryId = Brand::where('id', $request->brand)->value('id');
             $productsQuery->where('brand_id', $categoryId);
+            $filters["brand"] = $request->brand;
         }
 
         if ($request->filled('type')) {
             $categoryId = ProductType::where('id', $request->type)->value('id');
             $productsQuery->where('type_id', $categoryId);
+            $filters["type"] = $request->type;
         }
 
         if ($request->filled('scent')) {
@@ -46,10 +54,12 @@ class ProductController extends Controller
             $productsQuery->whereHas('scents', function ($query) use ($scentId) {
                 $query->where('scents.id', $scentId);
             });
+            $filters["scent"] = $request->scent;
         }
 
         if ($request->filled('color')) {
             $productsQuery->where('color', $request->color);
+            $filters["color"] = $request->color;
         }
 
         // sort by price
@@ -62,7 +72,7 @@ class ProductController extends Controller
     
         // Get the filtered products
         $products = $productsQuery->paginate(6);
-        return view('products', compact('categ', 'scents', 'types', 'brands', 'products', 'filter_by'));
+        return view('products', compact('categ', 'scents', 'types', 'brands', 'products', 'filter_by', 'filters'));
     }
 
 

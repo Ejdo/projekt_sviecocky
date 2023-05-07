@@ -265,3 +265,8 @@ table td input {
   text-align: center;
   text-decoration: none;
 }
+
+.filter-btn-selected {
+  background-color: #654c3e;
+  color: white;
+}
